@@ -40,9 +40,9 @@ body {
 .o-card {
   perspective: 1000px;
   background-color: #e2e1e0; }
-  .o-card.js-flip .o-card__face--front {
+  .o-card.js-flip > .o-card__face--front {
     transform: rotateY(180deg); }
-  .o-card.js-flip .o-card__face--back {
+  .o-card.js-flip > .o-card__face--back {
     z-index: 11;
     transform: rotateY(0); }
   .o-card__face {

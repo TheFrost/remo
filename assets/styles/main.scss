@@ -64,7 +64,7 @@ body {
   perspective: 1000px;
   background-color: #e2e1e0;
   &.js-flip {
-    .o-card {
+    > .o-card {
       &__face {
         &--front {
           transform: rotateY(180deg);
