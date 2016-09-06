@@ -50,7 +50,7 @@ body {
     top: 0;
     left: 0;
     transform-style: preserve-3d;
-    transition: all 0.6s ease-in-out; }
+    transition: all 4s ease-in-out; }
     .o-card__face--front {
       z-index: 10;
       transform: rotateY(0);
