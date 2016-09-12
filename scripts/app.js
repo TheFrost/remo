@@ -1,9 +1,7 @@
 (function (window) {
 	'use strict';
 
-	$('.o-brick').on('click', function () {
-		var type = $(this).data('type');
-
+	function flipDesk(type) {
 		$('.o-card--' + type + '-a').toggleClass('js-flip');
 
 		setTimeout(function () {
@@ -11,14 +9,41 @@
 		}, 200);
 
 		if (type === "case" || type === "about") {
-			if ($('.o-card--creew-b').hasClass('js-hide')) {
+			if ($('.o-card--crew-b').hasClass('js-hide')) {
 				setTimeout(function () {
-					$('.o-card--creew-b').toggleClass('js-hide');
+					$('.o-card--crew-b').toggleClass('js-hide');
 				}, 900);
 			} else {
-				$('.o-card--creew-b').toggleClass('js-hide');
+				$('.o-card--crew-b').toggleClass('js-hide');
 			}
 		}
+	}
+
+	function flipMobile (type, info) {
+		$('.o-container').hide();
+		$('#' + info).show();
+		$('.o-card--' + type).toggleClass('js-flip');
+	}
+
+	$('.o-brick').on('click', function (evt) {
+		evt.preventDefault();
+
+		var type = $(this).data('type');
+
+		if (type === 'full') {
+			var showInfo = $(this).data('show');
+			flipMobile(type, showInfo);
+		} else {
+			flipDesk(type);
+		}
+
+	});
+
+
+	$('.o-close').on('click', function (evt) {
+		evt.preventDefault();
+
+		$('.o-card').removeClass('js-flip');
 	});
 
 

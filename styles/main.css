@@ -20,6 +20,9 @@
   width: 100%;
   height: 100%; }
 
+.u-imgresponsive {
+  max-width: 100%; }
+
 html,
 body {
   width: 100%;
@@ -34,30 +37,43 @@ body {
 * {
   box-sizing: border-box; }
 
+figure {
+  margin: 0; }
+
 .js-hide {
   display: none; }
+
+.o-layout--desktop {
+  display: none; }
+  @media (min-width: 768px) {
+    .o-layout--desktop {
+      display: block; } }
+
+@media (min-width: 768px) {
+  .o-layout--mobile {
+    display: none; } }
 
 .o-card {
   perspective: 1000px;
   background-color: #e2e1e0; }
-  .o-card.js-flip > .o-card__face--front {
+  .o-card.js-flip > .o-card__flipper {
     transform: rotateY(180deg); }
-  .o-card.js-flip > .o-card__face--back {
-    z-index: 11;
-    transform: rotateY(0); }
+  .o-card__flipper {
+    position: relative;
+    display: block;
+    transform-style: preserve-3d;
+    transition: all 0.6s ease-in-out; }
   .o-card__face {
     position: absolute;
     top: 0;
     left: 0;
-    transform-style: preserve-3d;
-    transition: all 4s ease-in-out; }
+    display: block;
+    backface-visibility: hidden; }
     .o-card__face--front {
       z-index: 10;
-      transform: rotateY(0);
       background: #fff; }
     .o-card__face--back {
-      z-index: 9;
-      transform: rotateY(-180deg);
+      transform: rotateY(180deg);
       background: #000; }
   .o-card--case {
     float: left;
@@ -92,58 +108,110 @@ body {
     .o-card--about-b .o-card__face--front > .o-brick:nth-child(4) {
       background: url("../images/tocs/7-toc.png") no-repeat center center;
       background-size: cover; }
-  .o-card--creew-a .o-card__face--front {
+  .o-card--crew-a .o-card__face--front {
     background: url("../images/tocs/6-toc.png") no-repeat center center;
     background-size: cover; }
-  .o-card--creew-b {
+  .o-card--crew-b {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 100;
     width: 50%;
     height: 100%; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(1) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(1) {
       background: url("../images/tocs/3-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(2) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(2) {
       background: url("../images/tocs/4-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(3) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(3) {
       background: url("../images/tocs/7-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(4) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(4) {
       background: url("../images/tocs/8-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(5) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(5) {
       background: url("../images/tocs/11-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--creew-b .o-card__face--front > .o-brick:nth-child(6) {
+    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(6) {
       background: url("../images/tocs/12-toc.png") no-repeat center center;
       background-size: cover; }
 
 .o-col {
   float: left;
+  width: 50%;
   height: 100%; }
-  .o-col:nth-child(1) {
-    width: calc(100% / 3); }
+  @media (max-width: 767px) {
+    .o-col:nth-child(1) > .o-brick:nth-child(1) {
+      background: url("../images/tocs/1-toc.png") no-repeat center center;
+      background-size: cover; }
     .o-col:nth-child(1) > .o-brick:nth-child(2) {
-      background: url("../images/tocs/5-toc.png") no-repeat center center;
+      background: url("../images/tocs/6-toc.png") no-repeat center center;
       background-size: cover; }
     .o-col:nth-child(1) > .o-brick:nth-child(3) {
       background: url("../images/tocs/9-toc.png") no-repeat center center;
       background-size: cover; }
-  .o-col:nth-child(2) {
-    width: calc(100% / 3 * 2); }
-    .o-col:nth-child(2) > .o-brick:nth-child(2) {
+    .o-col:nth-child(1) > .o-brick:nth-child(4) {
       background: url("../images/tocs/10-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-col:nth-child(2) > .o-brick:nth-child(3) {
-      background: url("../images/tocs/11-toc.png") no-repeat center center;
+    .o-col:nth-child(2) > .o-brick:nth-child(1) {
+      background: url("../images/tocs/3-toc.png") no-repeat center center;
       background-size: cover; }
+    .o-col:nth-child(2) > .o-brick:nth-child(2) {
+      background: url("../images/tocs/4-toc.png") no-repeat center center;
+      background-size: cover; }
+    .o-col:nth-child(2) > .o-brick:nth-child(3) {
+      background: url("../images/tocs/7-toc.png") no-repeat center center;
+      background-size: cover; }
+    .o-col:nth-child(2) > .o-brick:nth-child(4) {
+      background: url("../images/tocs/8-toc.png") no-repeat center center;
+      background-size: cover; } }
+  @media (min-width: 769px) {
+    .o-col:nth-child(1) {
+      width: calc(100% / 3); }
+      .o-col:nth-child(1) > .o-brick:nth-child(2) {
+        background: url("../images/tocs/5-toc.png") no-repeat center center;
+        background-size: cover; }
+      .o-col:nth-child(1) > .o-brick:nth-child(3) {
+        background: url("../images/tocs/9-toc.png") no-repeat center center;
+        background-size: cover; }
+    .o-col:nth-child(2) {
+      width: calc(100% / 3 * 2); }
+      .o-col:nth-child(2) > .o-brick:nth-child(2) {
+        background: url("../images/tocs/10-toc.png") no-repeat center center;
+        background-size: cover; }
+      .o-col:nth-child(2) > .o-brick:nth-child(3) {
+        background: url("../images/tocs/11-toc.png") no-repeat center center;
+        background-size: cover; } }
 
 .o-brick {
   float: left;
+  display: block;
   width: 100%;
   height: calc(100% / 3); }
+  @media (max-width: 767px) {
+    .o-brick {
+      height: calc(100% / 4); } }
   .o-brick--half {
     width: calc(100% / 2); }
+
+.o-container {
+  position: relative;
+  overflow-y: scroll; }
+  .o-container:nth-child(1) h1, .o-container:nth-child(2) h1 {
+    color: white; }
+
+.o-case__intro, .o-case__content {
+  padding: 16px; }
+
+.o-case__intro {
+  background-color: #fff; }
+
+.o-case__content {
+  background-color: #000; }
+
+.o-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 32px; }

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Remo</title>
-	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/main.css?v=1.0">
 
 
 </head>
@@ -12,55 +12,117 @@
 <body>
 
 	<div class="wrapper u-fullsize">
-		<div class="o-layout u-fullsize">
+		<div class="o-layout o-layout--desktop u-fullsize">
 			<div class="o-layout__grid u-fullsize">
 				<div class="o-card o-card--case o-card--case-a">
-					<div class="o-card__face o-card__face--front u-fullsize">
-						<div class="o-col">
-							<div class="o-brick o-card o-card--about o-card--about-a" data-type="about">
-								<div class="o-card__face o-card__face--front u-fullsize"></div>
-								<div class="o-card__face o-card__face--back u-fullsize"></div>
+					<div class="o-card__flipper u-fullsize">
+						<div class="o-card__face o-card__face--front u-fullsize">
+							<div class="o-col">
+								<a href="#" class="o-brick o-card o-card--about o-card--about-a" data-type="about">
+									<span class="o-card__flipper u-fullsize">
+										<span class="o-card__face o-card__face--front u-fullsize"></span>
+										<span class="o-card__face o-card__face--back u-fullsize"></span>
+									</span>
+								</a>
+								<div class="o-brick"></div>
+								<div class="o-brick"></div>
 							</div>
-							<div class="o-brick"></div>
-							<div class="o-brick"></div>
-						</div>
-						<div class="o-col">
-							<div class="o-card o-card--about o-card--about-b">
-								<div class="o-card__face o-card__face--front u-fullsize">
-									<div class="o-brick o-brick--half"></div>
-									<div class="o-brick o-brick--half"></div>
-									<div class="o-brick o-brick--half o-card o-card--creew o-card--creew-a" data-type="creew">
-										<div class="o-card__face o-card__face--front u-fullsize"></div>
+							<div class="o-col">
+								<div class="o-card o-card--about o-card--about-b">
+									<div class="o-card__flipper u-fullsize">
+										<div class="o-card__face o-card__face--front u-fullsize">
+											<div class="o-brick o-brick--half"></div>
+											<div class="o-brick o-brick--half"></div>
+											<a href="#" class="o-brick o-brick--half o-card o-card--crew o-card--crew-a" data-type="crew">
+												<span class="o-card__flipper u-fullsize">
+													<span class="o-card__face o-card__face--front u-fullsize"></span>
+													<span class="o-card__face o-card__face--back u-fullsize"></span>
+												</span>
+											</a>
+											<div class="o-brick o-brick--half"></div>
+										</div>
 										<div class="o-card__face o-card__face--back u-fullsize"></div>
 									</div>
-									<div class="o-brick o-brick--half"></div>
 								</div>
-								<div class="o-card__face o-card__face--back u-fullsize"></div>
+								<div class="o-brick o-brick--half"></div>
+								<div class="o-brick o-brick--half"></div>
 							</div>
-							<div class="o-brick o-brick--half"></div>
-							<div class="o-brick o-brick--half"></div>
 						</div>
+						<div class="o-card__face o-card__face--back u-fullsize"></div>
 					</div>
-					<div class="o-card__face o-card__face--back u-fullsize"></div>
 				</div>
 				<div class="o-card o-card--case o-card--case-b">
-					<div class="o-card__face o-card__face--front u-fullsize">
-						<div class="o-brick"></div>
-						<div class="o-brick"></div>
-						<div class="o-brick"></div>
+					<div class="o-card__flipper u-fullsize">
+						<div class="o-card__face o-card__face--front u-fullsize">
+							<div class="o-brick"></div>
+							<div class="o-brick"></div>
+							<div class="o-brick"></div>
+						</div>
+						<div class="o-card__face o-card__face--back u-fullsize"></div>
 					</div>
-					<div class="o-card__face o-card__face--back u-fullsize"></div>
 				</div>
-				<div class="o-card o-card--creew o-card--creew-b">
-					<div class="o-card__face o-card__face--front u-fullsize">
-						<div class="o-brick o-brick--half" data-type="case"></div>
-						<div class="o-brick o-brick--half" data-type="case"></div>
-						<div class="o-brick o-brick--half" data-type="case"></div>
-						<div class="o-brick o-brick--half" data-type="case"></div>
-						<div class="o-brick o-brick--half" data-type="case"></div>
-						<div class="o-brick o-brick--half" data-type="case"></div>
+				<div class="o-card o-card--crew o-card--crew-b">
+					<div class="o-card__flipper u-fullsize">
+						<div class="o-card__face o-card__face--front u-fullsize">
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
+						</div>
+						<div class="o-card__face o-card__face--back u-fullsize"></div>
 					</div>
-					<div class="o-card__face o-card__face--back u-fullsize"></div>
+				</div>
+			</div>
+		</div>
+		<div class="o-layout o-layout--mobile u-fullsize">
+			<div class="o-card o-card--full u-fullsize">
+				<div class="o-card__flipper u-fullsize">
+					<div class="o-card__face o-card__face--front u-fullsize">
+						<div class="o-col">
+							<a href="#" class="o-brick" data-type="full" data-show="about"></a>
+							<a href="#" class="o-brick" data-type="full" data-show="crew"></a>
+							<div class="o-brick"></div>
+							<div class="o-brick"></div>
+						</div>
+						<div class="o-col">
+							<a href="#" class="o-brick" data-type="full" data-show="case"></a>
+							<a href="#" class="o-brick" data-type="full" data-show="case"></a>
+							<a href="#" class="o-brick" data-type="full" data-show="case"></a>
+							<a href="#" class="o-brick" data-type="full" data-show="case"></a>
+						</div>
+					</div>
+					<div class="o-card__face o-card__face--back u-fullsize">
+						<div class="o-container u-fullsize" id="about">
+							<a href="#" class="o-close">x</a>
+							<h1>About</h1>
+						</div>
+						<div class="o-container u-fullsize" id="crew">
+							<a href="#" class="o-close">x</a>
+							<h1>Crew</h1>
+						</div>
+						<div class="o-container u-fullsize" id="case">
+							<a href="#" class="o-close">x</a>
+							<div class="o-case">
+								<div class="o-case__intro">
+									<h1>Case</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti nisi repellendus voluptatum unde dicta excepturi ipsum facilis amet, distinctio reprehenderit tenetur, qui, recusandae doloremque odio veniam iste facere error obcaecati!</p>
+								</div>
+								<div class="o-case__content">
+									<figure class="o-case__media">
+										<img src="https://placeholdit.imgix.net/~text?txtsize=144&txt=1920%C3%971080&w=1920&h=1080" class="u-imgresponsive" alt="">
+									</figure>
+									<figure class="o-case__media">
+										<img src="https://placeholdit.imgix.net/~text?txtsize=144&txt=1920%C3%971080&w=1920&h=1080" class="u-imgresponsive" alt="">
+									</figure>
+									<figure class="o-case__media">
+										<img src="https://placeholdit.imgix.net/~text?txtsize=144&txt=1920%C3%971080&w=1920&h=1080" class="u-imgresponsive" alt="">
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
