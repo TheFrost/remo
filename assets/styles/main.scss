@@ -3,14 +3,24 @@
 
 // Mixins
 @mixin apply-brick-bg($list, $exception-index) {
-  > .o-brick {
-    @each $item in $list {
-      $i: index($list, $item);
-      @if ($i != $exception-index) {
-        &:nth-child(#{$i}) {
-          background: url('../images/tocs/' + $item + '-toc.png') no-repeat center center;
-          background-size: cover;
-        }
+  @each $item in $list {
+    $i: index($list, $item);
+    @if ($i != $exception-index) {
+      &:nth-child(#{$i}) {
+        background: url('../images/tocs/' + $item + '-toc.png') no-repeat center center;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+@mixin apply-card-bg($list) {
+  @each $item in $list {
+    $i: index($list, $item);
+    &:nth-child(#{$i}) {
+      .o-card__face--front {
+        background: url('../images/tocs/' + $item + '-toc.png') no-repeat center center;
+        background-size: cover;
       }
     }
   }
@@ -79,8 +89,30 @@ figure {
     }
   }
   &--mobile {
+    transition: all 0.6s ease-in-out;
     @include media(">=tablet") {
       display: none;
+    }
+    &.js-translate-up {
+      transform: translate3d(0, calc((100% / 4) * -1), 0);
+      &.js-show-content {
+        .o-curtain {
+          top: calc(100% / 4 * 2);
+        }
+      }
+    }
+    &.js-translate-down {
+      transform: translate3d(0, calc(100% / 4), 0);
+      &.js-show-content {
+        .o-curtain {
+          bottom: calc(100% / 4 * 2);
+        }
+      }
+    }
+    &.js-show-content {
+      .o-curtain {
+        height: calc(100% / 4 * 3);
+      }
     }
   }
 }
@@ -113,6 +145,7 @@ figure {
     &--back {
       transform: rotateY(180deg);
       background: #000;
+      color: white;
     }
   }
   &--case {
@@ -125,8 +158,10 @@ figure {
       width: calc(100% / 4);
 
       .o-card__face--front {
-        $tocs: 4, 8, 12;
-        @include apply-brick-bg($tocs, false);
+        > .o-brick {
+          $tocs: 4, 8, 12;
+          @include apply-brick-bg($tocs, false);
+        }
       }
     }
   }
@@ -146,8 +181,10 @@ figure {
       }
 
       .o-card__face--front {
-        $tocs: 2, 3, "exception", 7;
-        @include apply-brick-bg($tocs, 3);
+        > .o-brick {
+          $tocs: 2, 3, "exception", 7;
+          @include apply-brick-bg($tocs, 3);
+        }
       }
     }
   }
@@ -167,8 +204,10 @@ figure {
       height: 100%;
 
       .o-card__face--front {
-        $tocs: 3, 4, 7, 8 , 11, 12;
-        @include apply-brick-bg($tocs, false);
+        > .o-brick {
+          $tocs: 3, 4, 7, 8 , 11, 12;
+          @include apply-brick-bg($tocs, false);
+        }
       }
     }
   }
@@ -178,29 +217,22 @@ figure {
   float: left;
   width: 50%;
   height: 100%;
-
-  @include media("<tablet") {
-    &:nth-child(1) {
-      $tocs: 1, 6, 9, 10;
-      @include apply-brick-bg($tocs, false);
-    }
-    &:nth-child(2) {
-      $tocs: 3, 4, 7, 8;
-      @include apply-brick-bg($tocs, false);
-    }
-  }
   @include media(">tablet") {
     &:nth-child(1) {
       width: calc(100% / 3);
 
-      $tocs: "exception", 5, 9;
-      @include apply-brick-bg($tocs, 1);
+      > .o-brick {
+        $tocs: "exception", 5, 9;
+        @include apply-brick-bg($tocs, 1);
+      }
     }
     &:nth-child(2) {
       width: calc(100% / 3 * 2);
 
-      $tocs: "exception", 10, 11;
-      @include apply-brick-bg($tocs, 1);
+      > .o-brick {
+        $tocs: "exception", 10, 11;
+        @include apply-brick-bg($tocs, 1);
+      }
     }
   }
 }
@@ -212,43 +244,54 @@ figure {
   height: calc(100% / 3);
   @include media("<tablet") {
     height: calc(100% / 4);
+
+    $tocs: 1, 2, 3, 4, 5, 6, 7, 8;
+    @include apply-card-bg($tocs);
+
+    $pseudoTocs: 1, 2, 7, 8;
+    $pseudoBg: 9, 10, 11, 12;
+    @each $toc in $pseudoTocs {
+      $i: index($pseudoTocs, $toc);
+      &:nth-child(#{$toc}) {
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url('../images/tocs/' + nth($pseudoBg, $i) + '-toc.png') no-repeat center center;
+          background-size: cover;
+
+          @if ($toc < 4) {
+            top: 0;
+            transform: translateY(-100%);
+          } @else {
+            bottom: 0;
+            transform: translateY(100%);
+          }
+        }
+      }
+    }
   }
   &--half {
     width: calc(100% / 2);
   }
 }
 
-.o-container {
-  position: relative;
-  overflow-y: scroll;
 
-  // temp
-  &:nth-child(1),
-  &:nth-child(2) {
-    h1 {
-      color: white;
-    }
-  }
-}
-
-
-.o-case {
-  &__intro,
-  &__content {
-    padding: 16px;
-  }
-  &__intro {
-    background-color: #fff;
-  }
-  &__content {
-    background-color: #000;
-  }
-}
-
-
-.o-close {
+.o-curtain {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 32px;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 0;
+  transition: height 0.6s ease-in-out;
+  background-color: #000;
+  overflow-y: scroll;
+}
+
+.o-content {
+  h1, p {
+    color: white;
+  }
 }
