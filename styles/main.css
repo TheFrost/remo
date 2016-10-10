@@ -36,13 +36,14 @@ body {
   font-size: 16px; }
 
 body {
-  position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   padding: 0;
-  background-color: #e2e1e0;
-  overflow: hidden; }
+  background-color: #e2e1e0; }
+  body.js-noscroll {
+    position: fixed;
+    overflow: hidden; }
 
 * {
   box-sizing: border-box; }
@@ -58,15 +59,6 @@ figure {
   @media (min-width: 768px) {
     .o-layout--desktop {
       display: block; } }
-  .o-layout--desktop .o-case__info {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: white; }
-  .o-layout--desktop .o-case__media {
-    width: 100%;
-    min-height: 100%;
-    background-color: black; }
 
 .o-layout--mobile {
   transition: all 0.6s ease-in-out; }
@@ -86,10 +78,12 @@ figure {
   .o-layout--mobile .o-card__face--back {
     display: table;
     text-align: center;
-    background-size: contain; }
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat; }
 
 .o-card {
-  perspective: 1000px;
+  perspective: 1500px;
   background-color: #e2e1e0; }
   .o-card.js-flip > .o-card__flipper {
     transform: rotateY(180deg); }
@@ -106,7 +100,8 @@ figure {
     backface-visibility: hidden; }
     .o-card__face--front {
       z-index: 10;
-      background: #fff; }
+      background: #fff;
+      transform: rotateY(0); }
     .o-card__face--back {
       transform: rotateY(180deg);
       background: white;
@@ -120,6 +115,10 @@ figure {
       width: calc(100% / 4 * 3); }
     .o-card--case-b {
       width: calc(100% / 4); }
+      .o-card--case-b.js-flip {
+        position: fixed;
+        top: 0;
+        right: 0; }
       .o-card--case-b .o-card__face--front > .o-brick:nth-child(1) {
         background: url("../images/tocs/4-toc.png") no-repeat center center;
         background-size: cover; }
@@ -289,9 +288,6 @@ figure {
 
 .o-content {
   background: white; }
-  .o-content--crew .o-crew__item {
-    width: 100%;
-    height: calc(100% / 3); }
   .o-content--about {
     display: table;
     text-align: center; }
@@ -306,14 +302,40 @@ figure {
   background-color: #000;
   overflow-y: scroll; }
 
-.o-case__info, .o-case__media {
-  padding: 1em; }
-
-.o-case__media {
+.o-case__resources {
+  width: 100%;
+  min-height: 100%;
+  padding: 1em;
+  text-align: center;
+  background-color: black;
   overflow-y: scroll; }
+  .o-case__resources-group {
+    max-width: 1024px;
+    margin: 0 auto; }
+  .o-case__resources img {
+    margin-bottom: 1em; }
+  .o-case__resources audio {
+    margin: 4em 0; }
+
+.o-case__video {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  margin-bottom: 1em;
+  height: 0; }
+  .o-case__video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
 
 .o-case__info {
-  background-color: #fff; }
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  background-color: #fff;
+  overflow-y: scroll; }
   @media (min-width: 769px) {
     .o-case__info {
       padding-top: 3em; } }
@@ -329,13 +351,33 @@ figure {
   .o-case__logo img {
     display: inline-block; }
 
-.o-case .o-format__title {
-  margin-bottom: 0.5em; }
+.o-case__actions {
+  width: 100%;
+  margin-top: 2em;
+  text-align: center; }
+  .o-case__actions-item {
+    display: inline-block;
+    vertical-align: middle; }
+    .o-case__actions-item:hover {
+      background-color: rgba(0, 0, 0, 0.1); }
+  .o-case__actions-link {
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none; }
+    .o-case__actions-link:hover {
+      text-decoration: none; }
+    .o-case__actions-link--seemore {
+      color: #7cbfbb; }
+      .o-case__actions-link--seemore:hover {
+        color: #7cbfbb; }
 
 .o-crew {
   overflow-y: scroll; }
   .o-crew__grid {
     min-height: 549px; }
+  @media (max-width: 768px) {
+    .o-crew__item {
+      width: 100%; } }
   .o-crew__item:nth-child(2n) .o-crew__name {
     float: right;
     padding-left: 1em;
@@ -355,7 +397,7 @@ figure {
       width: 100%;
       max-width: 70%;
       text-align: right; }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     .o-crew__name, .o-crew__photo {
       height: 100%; } }
 
@@ -406,4 +448,6 @@ figure {
   position: absolute;
   top: 1em;
   right: 1em;
+  width: 20px;
+  height: 20px;
   color: black; }

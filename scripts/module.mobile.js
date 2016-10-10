@@ -86,6 +86,9 @@
     _closeCurtain = function () {
   		_cache.bricks.removeClass('js-flip');
   		_cache.layout.removeClass('js-show-content js-translate-up js-translate-down');
+      setTimeout(function () {
+        Utils.cleanContainer(_cache.contentCase);
+      }, 600);
   	},
     _switchCurtain = function (_el) {
   		var index = _cache.bricks.index(_el);

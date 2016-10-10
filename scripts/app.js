@@ -22,6 +22,9 @@
 
     /*Public*/
     init = function () {
+      Service.init();
+    },
+    start = function () {
       _renderData();
 
       if (Utils.isMobile()) {
@@ -31,14 +34,17 @@
       }
 
       Router.init();
-    };
+    }
 
     return {
-      init: init
+      init: init,
+      start: start
     }
 
   }());
 
   global.App = App;
+
+  App.init();
 
 }(window));

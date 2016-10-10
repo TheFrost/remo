@@ -27,17 +27,23 @@
         _self.cases = _casesData[0].map(function (item, index) {
           return {
             logo: item.acf.logo.url,
-            media: item.acf.media.map(function (item, index) {
-              return {
-                url: item.guid
-              }
-            }),
             problem: item.acf.problem,
             slug: item.slug,
             solution: item.acf.solution,
-            video: item.acf.video.map(function (item, index) {
+            media: !item.acf.media ? false : item.acf.media.map(function (item, index) {
+              return {
+                url_media: item.guid
+              }
+            }),
+            video: !item.acf.video ? false : item.acf.video.map(function (item, index) {
               return {
                 url_video: item.url_video
+              }
+            }),
+            audio: !item.acf.audio ? false : item.acf.audio.map(function (item, index) {
+              return {
+                url_audio: item.guid,
+                mime_type: item.post_mime_type
               }
             })
           };
@@ -60,7 +66,7 @@
         });
 
         /*Init App*/
-        App.init();
+        App.start();
       });
     },
 
@@ -76,7 +82,5 @@
   }());
 
   global.Service = Service;
-
-  Service.init();
 
 }(window));

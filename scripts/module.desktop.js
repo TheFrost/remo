@@ -24,7 +24,11 @@
         caseInfoContainer: $('.o-card--case-b > .o-card__flipper > .o-card__face--back'),
         crewTemplate: $('#crew-template'),
         crewContainer: $('#crew-container-desktop'),
-        allCards: $('.o-card')
+        allCards: $('.o-card'),
+        root: $('html body'),
+        body: $('body'),
+        actionLinks: $('.o-case__actions-link'),
+        currentType: null
       }
     },
     _bindEvents = function () {
@@ -40,17 +44,56 @@
 
         if (_type === 'case') {
           _renderCase(_slug);
+          _cache.body.removeClass('js-noscroll');
         }
-        _flip(_type);
+
+        if (_that.hasClass('js-flip')) {
+          _closeFlip(_cache.currentType);
+        } else if ($('.o-card.js-flip').length) {
+          _switchFlip(_type, _cache.currentType);
+        } else {
+          _flip(_type);
+        }
+
+        _cache.currentType = _type;
       });
       _cache.doc.on('click', '.o-close', function (evt) {
         evt.preventDefault();
 
         _closeCase();
       });
+      _cache.doc.on('click', '.o-case__actions-link', function (evt) {
+        evt.preventDefault();
+
+        var _hash = $(this).attr('href');
+
+        _scrollTo(_hash);
+      });
+    },
+    _scrollTo = function (_hash) {
+      var _anchor = $(_hash),
+          _distance = _anchor.offset().top;
+
+      _cache.root.animate({scrollTop: _distance}, 500);
     },
     _closeCase = function () {
-      _flip('case');
+      if (_cache.root.scrollTop() > 0) {
+        _cache.root.animate({scrollTop: 0}, 500, 'swing', function () {
+          _cache.body.addClass('js-noscroll');
+          _flip('case');
+          setTimeout(function () {
+            Utils.cleanContainer(_cache.caseInfoContainer);
+            Utils.cleanContainer(_cache.caseMediaContainer);
+          }, 500);
+        });
+      } else {
+        _cache.body.addClass('js-noscroll');
+        _flip('case');
+        setTimeout(function () {
+          Utils.cleanContainer(_cache.caseInfoContainer);
+          Utils.cleanContainer(_cache.caseMediaContainer);
+        }, 500);
+      }
     },
     _renderCase = function (_slug) {
       var _sourceInfo = _cache.infoTemplate.html(),
@@ -78,6 +121,16 @@
       _markup = Utils.getMarkup(_source, _crew);
       _cache.crewContainer.html(_markup);
     },
+    _closeFlip = function (_type) {
+      _flip(_type);
+    },
+    _switchFlip = function (_type, _currentType) {
+      _closeFlip(_currentType);
+
+      setTimeout(function () {
+        _flip(_type);
+      }, 800);
+    },
     _flip = function (_type) {
   		$('.o-card--' + _type + '-a').toggleClass('js-flip');
 
@@ -94,6 +147,10 @@
   				_cache.crewB.toggleClass('js-hide');
   			}
   		}
+
+      if (_type === 'case') {
+        Utils.resetScroll(_cache.root);
+      }
   	};
 
     return {

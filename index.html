@@ -13,9 +13,9 @@
 	<link rel="stylesheet" href="styles/main.css?v=1.0">
 </head>
 
-<body>
+<body class="js-noscroll">
 
-	<div class="splash" style="position:fixed;width:100%;height:100%;background-color:black;z-index:9999;display:none;"></div>
+	<div class="splash" style="position:fixed;width:100%;height:100%;background-color:black;z-index:9999;"></div>
 
 	<div class="wrapper u-fullsize">
 		<div class="o-layout o-layout--desktop u-fullsize">
@@ -62,7 +62,29 @@
 								<div class="o-brick o-brick--half"></div>
 							</div>
 						</div>
-						<div class="o-card__face o-card__face--back u-fullsize"></div>
+						<div class="o-card__face o-card__face--back u-fullsize">
+							<div class="o-case__resources">
+								<div class="o-case__resources-group" id="media-img">
+									<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97600&w=1024&h=600" class="u-imgresponsive" alt="">
+									<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97600&w=1024&h=600" class="u-imgresponsive" alt="">
+									<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97600&w=1024&h=600" class="u-imgresponsive" alt="">
+									<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97600&w=1024&h=600" class="u-imgresponsive" alt="">
+								</div>
+								<div class="o-case__resources-group" id="media-audio">
+									<audio controls>
+										<source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+									</audio>
+								</div>
+								<div class="o-case__resources-group" id="media-video">
+									<div class="o-case__video">
+										<iframe src="https://www.youtube.com/embed/NMwcVGqkr78" frameborder="0" allowfullscreen></iframe>
+									</div>
+									<div class="o-case__video">
+										<iframe src="https://player.vimeo.com/video/171343267?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="o-card o-card--case o-card--case-b">
@@ -73,7 +95,40 @@
 							<div class="o-brick"></div>
 						</div>
 						<!-- Case Sidebar -->
-						<div class="o-card__face o-card__face--back u-fullsize"></div>
+						<div class="o-card__face o-card__face--back u-fullsize">
+							<div class="o-case__info">
+								<a href="#" class="o-close">
+									<img src="images/icon-close.svg" class="u-imgresponsive" alt="">
+								</a>
+								<figure class="o-case__logo">
+									<img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97300&w=400&h=300" class="u-imgresponsive" alt="">
+								</figure>
+								<h1 class="o-format__title">Problema</h1>
+								<p class="o-format__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat magnam quasi quis iusto nihil ea. Provident perferendis aliquid ullam fugit, animi tenetur quidem sint, distinctio dolorum nostrum, perspiciatis sequi, in?</p>
+								<h1 class="o-format__title">Solución</h1>
+								<p class="o-format__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore magnam non beatae, soluta sit facilis doloremque iste doloribus voluptatum inventore distinctio, sunt eveniet quia sed fugiat voluptates nulla praesentium iusto?</p>
+								<ul class="o-case__actions u-list-unstyled">
+									<li class="o-case__actions-item">
+										<a href="#" class="o-case__actions-link o-case__actions-link--seemore">ver <br> más</a>
+									</li>
+									<li class="o-case__actions-item">
+										<a href="#media-video" class="o-case__actions-link">
+											<img src="images/icon-tv.png" alt="">
+										</a>
+									</li>
+									<li class="o-case__actions-item">
+										<a href="#media-audio" class="o-case__actions-link">
+											<img src="images/icon-radio.png" alt="">
+										</a>
+									</li>
+									<li class="o-case__actions-item">
+										<a href="#media-img" class="o-case__actions-link">
+											<img src="images/icon-picture.png" alt="">
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="o-card o-card--crew o-card--crew-b">
@@ -176,10 +231,34 @@
 				<h1 class="o-format__title">Solución</h1>
 				<p class="o-format__text">{{solution}}</p>
 			</div>
-			<div class="o-case__media">
-				{{#each media}}
-					<img src="{{this.url}}" class="u-imgresponsive" alt="">
-				{{/each}}
+			<div class="o-case__resources">
+				{{#if media}}
+				<div class="o-case__media" id="media-img">
+					{{#each media}}
+					<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
+					{{/each}}
+				</div>
+				{{/if}}
+
+				{{#if audio}}
+				<div class="o-case__media" id="media-audio">
+					<audio controls>
+						{{#each audio}}
+						<source src="{{this.url_audio}}" type="{{this.mime_type}}">
+						{{/each}}
+					</audio>
+				</div>
+				{{/if}}
+
+				{{#if video}}
+				<div class="o-case__media" id="media-video">
+					{{#each video}}
+					<div class="o-case__video">
+						<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+					{{/each}}
+				</div>
+				{{/if}}
 			</div>
 		</div>
 	</script>
@@ -187,24 +266,75 @@
 	<script id="case-template-info" type="text/x-handlebars-template">
 		<div class="o-case__info">
 			<a href="#" class="o-close">
-				<i class="fa fa-times" aria-hidden="true"></i>
+				<img src="images/icon-close.svg" class="u-imgresponsive" alt="">
 			</a>
 			<figure class="o-case__logo">
-				<img src="{{logo}}" clas="u-imgresponsive" alt="">
+				<img src="{{logo}}" class="u-imgresponsive" alt="">
 			</figure>
 			<h1 class="o-format__title">Problema</h1>
 			<p class="o-format__text">{{problem}}</p>
 			<h1 class="o-format__title">Solución</h1>
 			<p class="o-format__text">{{solution}}</p>
+			<ul class="o-case__actions u-list-unstyled">
+				<li class="o-case__actions-item">
+					<a href="#" class="o-case__actions-link o-case__actions-link--seemore">ver <br> más</a>
+				</li>
+				{{#if video}}
+				<li class="o-case__actions-item">
+					<a href="#media-video" class="o-case__actions-link">
+						<img src="images/icon-tv.png" alt="">
+					</a>
+				</li>
+				{{/if}}
+				{{#if audio}}
+				<li class="o-case__actions-item">
+					<a href="#media-audio" class="o-case__actions-link">
+						<img src="images/icon-radio.png" alt="">
+					</a>
+				</li>
+				{{/if}}
+				{{#if media}}
+				<li class="o-case__actions-item">
+					<a href="#media-img" class="o-case__actions-link">
+						<img src="images/icon-picture.png" alt="">
+					</a>
+				</li>
+				{{/if}}
+			</ul>
 		</div>
 	</script>
 
 	<script id="case-template-media" type="text/x-handlebars-template">
-		<div class="o-case__media">
-			{{#each media}}
-				<img src="{{this.url}}" class="u-imgresponsive" alt="">
-			{{/each}}
+		<div class="o-case__resources">
+			{{#if media}}
+			<div class="o-case__media" id="media-img">
+				{{#each media}}
+				<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
+				{{/each}}
+			</div>
+			{{/if}}
+
+			{{#if audio}}
+			<div class="o-case__media" id="media-audio">
+				<audio controls>
+					{{#each audio}}
+					<source src="{{this.url_audio}}" type="{{this.mime_type}}">
+					{{/each}}
+				</audio>
+			</div>
+			{{/if}}
+
+			{{#if video}}
+			<div class="o-case__media" id="media-video">
+				{{#each video}}
+				<div class="o-case__video">
+					<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+				{{/each}}
+			</div>
+			{{/if}}
 		</div>
+	</div>
 	</script>
 
 	<script id="crew-template" type="text/x-handlebars-template">
@@ -226,10 +356,10 @@
 
 	<!-- Custom -->
 	<script src="scripts/module.utils.js"></script>
-	<script src="scripts/module.service.js"></script>
 	<script src="scripts/module.router.js"></script>
 	<script src="scripts/module.mobile.js"></script>
 	<script src="scripts/module.desktop.js"></script>
+	<script src="scripts/module.service.js"></script>
 	<script src="scripts/app.js"></script>
 </body>
 
