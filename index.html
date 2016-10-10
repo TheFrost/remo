@@ -3,14 +3,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Remo</title>
+
+	<!-- Libs -->
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+
+	<!-- Custom -->
 	<link rel="stylesheet" href="styles/main.css?v=1.0">
-
-
 </head>
 
 <body>
+
+	<div class="splash" style="position:fixed;width:100%;height:100%;background-color:black;z-index:9999;display:none;"></div>
 
 	<div class="wrapper u-fullsize">
 		<div class="o-layout o-layout--desktop u-fullsize">
@@ -22,7 +27,9 @@
 								<a href="#" class="o-brick o-card o-card--about o-card--about-a" data-type="about">
 									<span class="o-card__flipper u-fullsize">
 										<span class="o-card__face o-card__face--front u-fullsize"></span>
-										<span class="o-card__face o-card__face--back u-fullsize"></span>
+										<span class="o-card__face o-card__face--back u-fullsize">
+											<h1 class="o-logo">remo</h1>
+										</span>
 									</span>
 								</a>
 								<div class="o-brick"></div>
@@ -37,12 +44,18 @@
 											<a href="#" class="o-brick o-brick--half o-card o-card--crew o-card--crew-a" data-type="crew">
 												<span class="o-card__flipper u-fullsize">
 													<span class="o-card__face o-card__face--front u-fullsize"></span>
-													<span class="o-card__face o-card__face--back u-fullsize"></span>
+													<span class="o-card__face o-card__face--back u-fullsize">
+														<h1 class="o-format__title">Crew</h1>
+													</span>
 												</span>
 											</a>
 											<div class="o-brick o-brick--half"></div>
 										</div>
-										<div class="o-card__face o-card__face--back u-fullsize"></div>
+										<div class="o-card__face o-card__face--back u-fullsize">
+											<div class="o-about__desc">
+												<p class="o-about__text">remo es una agencia de publicidad a contracorriente y atípica que lleva desde 1993 siendo ininterrumpidamente libre, independiente y feliz. </p>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="o-brick o-brick--half"></div>
@@ -59,6 +72,7 @@
 							<div class="o-brick"></div>
 							<div class="o-brick"></div>
 						</div>
+						<!-- Case Sidebar -->
 						<div class="o-card__face o-card__face--back u-fullsize"></div>
 					</div>
 				</div>
@@ -72,7 +86,7 @@
 							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
 							<a href="#" class="o-brick o-brick--half" data-type="case"></a>
 						</div>
-						<div class="o-card__face o-card__face--back u-fullsize"></div>
+						<div class="o-card__face o-card__face--back u-fullsize" id="crew-container-desktop"></div>
 					</div>
 				</div>
 			</div>
@@ -83,68 +97,63 @@
 			<a href="" class="o-brick o-brick--half o-card" data-type="about">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize">
+						<h1 class="o-logo">remo</h1>
+					</span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="crew">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="case">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="case">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="case">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="case">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card" data-type="case">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Logo</span>
+					<span class="o-card__face o-card__face--back u-fullsize"></span>
 				</span>
 			</a>
 			<a href="" class="o-brick o-brick--half o-card">
 				<span class="o-card__flipper u-fullsize">
 					<span class="o-card__face o-card__face--front u-fullsize"></span>
-					<span class="o-card__face o-card__face--back u-fullsize">Day's Image</span>
+					<span class="o-card__face o-card__face--back u-fullsize" id="imgday-mobile"></span>
 				</span>
 			</a>
 
 			<div class="o-curtain">
 				<div class="o-content o-content--about">
-					<h1>About</h1>
+					<div class="o-about__desc">
+						<p class="o-about__text">remo es una agencia de publicidad a contracorriente y atípica que lleva desde 1993 siendo ininterrumpidamente libre, independiente y feliz. </p>
+					</div>
 				</div>
-				<div class="o-content o-content--crew">
-					<h1>Crew</h1>
-				</div>
-				<div class="o-content o-content--case">
-					<h1>Case</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, voluptatum corporis commodi asperiores, ad doloribus incidunt dicta illum dolorum natus molestias impedit debitis minus officiis eveniet ex reiciendis consectetur aliquid.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat et reiciendis, minima quis quisquam enim optio doloribus consectetur beatae aliquam hic a fugit ea sequi, qui voluptas. Id iste, sapiente!</p>
-					<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97768&w=1024&h=768" class="u-imgresponsive" alt="">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97768&w=1024&h=768" class="u-imgresponsive" alt="">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97768&w=1024&h=768" class="u-imgresponsive" alt="">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=85&txt=1024%C3%97768&w=1024&h=768" class="u-imgresponsive" alt="">
-				</div>
+				<div class="o-content o-content--crew" id="crew-container-mobile"></div>
+				<!-- Content Case Mobile -->
+				<div class="o-content o-content--case"></div>
 			</div>
 		</div>
 
@@ -152,7 +161,75 @@
 
 	</div>
 
+
+	<!-- Libs -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/handlebars/handlebars.js"></script>
+	<script src="bower_components/pathjs/path.js"></script>
+
+	<!-- Handelbars Template -->
+	<script id="case-template" type="text/x-handlebars-template">
+		<div class="o-case">
+			<div class="o-case__info">
+				<h1 class="o-format__title">Problema</h1>
+				<p class="o-format__text">{{problem}}</p>
+				<h1 class="o-format__title">Solución</h1>
+				<p class="o-format__text">{{solution}}</p>
+			</div>
+			<div class="o-case__media">
+				{{#each media}}
+					<img src="{{this.url}}" class="u-imgresponsive" alt="">
+				{{/each}}
+			</div>
+		</div>
+	</script>
+
+	<script id="case-template-info" type="text/x-handlebars-template">
+		<div class="o-case__info">
+			<a href="#" class="o-close">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</a>
+			<figure class="o-case__logo">
+				<img src="{{logo}}" clas="u-imgresponsive" alt="">
+			</figure>
+			<h1 class="o-format__title">Problema</h1>
+			<p class="o-format__text">{{problem}}</p>
+			<h1 class="o-format__title">Solución</h1>
+			<p class="o-format__text">{{solution}}</p>
+		</div>
+	</script>
+
+	<script id="case-template-media" type="text/x-handlebars-template">
+		<div class="o-case__media">
+			{{#each media}}
+				<img src="{{this.url}}" class="u-imgresponsive" alt="">
+			{{/each}}
+		</div>
+	</script>
+
+	<script id="crew-template" type="text/x-handlebars-template">
+		<div class="o-crew u-fullsize">
+			<div class="o-crew__grid u-fullsize u-cf">
+				{{#each team}}
+					<div class="o-brick o-brick--half o-crew__item">
+						<div class="o-brick o-brick--half o-crew__name">
+							<h3 class="o-format__title">{{name}}</h3>
+						</div>
+						<div class="o-brick o-brick--half o-crew__photo" style="background-image:url('{{url}}');">
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</script>
+
+
+	<!-- Custom -->
+	<script src="scripts/module.utils.js"></script>
+	<script src="scripts/module.service.js"></script>
+	<script src="scripts/module.router.js"></script>
+	<script src="scripts/module.mobile.js"></script>
+	<script src="scripts/module.desktop.js"></script>
 	<script src="scripts/app.js"></script>
 </body>
 

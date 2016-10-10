@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "node-sass --include-path scss assets/styles/main.scss styles/main.css",
+    "prefix-css": "postcss --use autoprefixer styles/*.css -d styles/",
+    "build-css": "node-sass --include-path scss assets/styles/main.scss styles/main.css -x \"npm run prefix-css\"",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.0",
     "node-sass": "^3.4.2",
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.8.1",
+    "postcss-cli": "^2.6.0"
   },
   "author": "",
   "license": "ISC"

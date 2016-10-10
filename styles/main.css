@@ -16,19 +16,29 @@
   padding: 0;
   list-style: none; }
 
-.u-fullsize {
+.u-fullsize, .o-content {
   width: 100%;
   height: 100%; }
 
 .u-imgresponsive {
   max-width: 100%; }
 
+@font-face {
+  font-family: "Chalet";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/chalet-ny-1970.eot?") format("eot"), url("../fonts/chalet-ny-1970.svg#Chalet") format("svg"), url("../fonts/chalet-ny-1970.woff2") format("woff2"), url("../fonts/chalet-ny-1970.woff") format("woff"); }
+
 html,
 body {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  font-size: 16px; }
 
 body {
+  position: fixed;
+  top: 0;
+  left: 0;
   margin: 0;
   padding: 0;
   background-color: #e2e1e0;
@@ -48,6 +58,15 @@ figure {
   @media (min-width: 768px) {
     .o-layout--desktop {
       display: block; } }
+  .o-layout--desktop .o-case__info {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white; }
+  .o-layout--desktop .o-case__media {
+    width: 100%;
+    min-height: 100%;
+    background-color: black; }
 
 .o-layout--mobile {
   transition: all 0.6s ease-in-out; }
@@ -64,6 +83,10 @@ figure {
       bottom: calc(100% / 4 * 2); }
   .o-layout--mobile.js-show-content .o-curtain {
     height: calc(100% / 4 * 3); }
+  .o-layout--mobile .o-card__face--back {
+    display: table;
+    text-align: center;
+    background-size: contain; }
 
 .o-card {
   perspective: 1000px;
@@ -86,12 +109,14 @@ figure {
       background: #fff; }
     .o-card__face--back {
       transform: rotateY(180deg);
-      background: #000;
+      background: white;
       color: white; }
   .o-card--case {
     float: left;
     height: 100%; }
     .o-card--case-a {
+      position: relative;
+      z-index: 10;
       width: calc(100% / 4 * 3); }
     .o-card--case-b {
       width: calc(100% / 4); }
@@ -107,9 +132,16 @@ figure {
   .o-card--about-a .o-card__face--front {
     background: url("../images/tocs/1-toc.png") no-repeat center center;
     background-size: cover; }
+  .o-card--about-a .o-card__face--back {
+    display: table;
+    padding: 1em;
+    text-align: center; }
   .o-card--about-b {
     width: 100%;
     height: calc(100% / 3 * 2); }
+    .o-card--about-b .o-card__face--back {
+      display: table;
+      padding: 1em; }
     .o-card--about-b .o-brick {
       height: calc(100% / 2); }
     .o-card--about-b .o-card__face--front > .o-brick:nth-child(1) {
@@ -124,6 +156,12 @@ figure {
   .o-card--crew-a .o-card__face--front {
     background: url("../images/tocs/6-toc.png") no-repeat center center;
     background-size: cover; }
+  .o-card--crew-a .o-card__face--back {
+    display: table;
+    text-align: center; }
+    .o-card--crew-a .o-card__face--back .o-format__title {
+      display: table-cell;
+      vertical-align: middle; }
   .o-card--crew-b {
     position: absolute;
     top: 0;
@@ -131,6 +169,8 @@ figure {
     z-index: 100;
     width: 50%;
     height: 100%; }
+    .o-card--crew-b .o-crew__name, .o-card--crew-b .o-crew__photo {
+      height: 100%; }
     .o-card--crew-b .o-card__face--front > .o-brick:nth-child(1) {
       background: url("../images/tocs/3-toc.png") no-repeat center center;
       background-size: cover; }
@@ -154,7 +194,7 @@ figure {
   float: left;
   width: 50%;
   height: 100%; }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     .o-col:nth-child(1) {
       width: calc(100% / 3); }
       .o-col:nth-child(1) > .o-brick:nth-child(2) {
@@ -247,6 +287,15 @@ figure {
   .o-brick--half {
     width: calc(100% / 2); }
 
+.o-content {
+  background: white; }
+  .o-content--crew .o-crew__item {
+    width: 100%;
+    height: calc(100% / 3); }
+  .o-content--about {
+    display: table;
+    text-align: center; }
+
 .o-curtain {
   position: absolute;
   left: 0;
@@ -257,5 +306,104 @@ figure {
   background-color: #000;
   overflow-y: scroll; }
 
-.o-content h1, .o-content p {
-  color: white; }
+.o-case__info, .o-case__media {
+  padding: 1em; }
+
+.o-case__media {
+  overflow-y: scroll; }
+
+.o-case__info {
+  background-color: #fff; }
+  @media (min-width: 769px) {
+    .o-case__info {
+      padding-top: 3em; } }
+  .o-case__info .o-format__title {
+    margin-bottom: 0.5em; }
+  .o-case__info .o-format__text {
+    margin-top: 0;
+    margin-bottom: 1em; }
+
+.o-case__logo {
+  margin-bottom: 1em;
+  text-align: center; }
+  .o-case__logo img {
+    display: inline-block; }
+
+.o-case .o-format__title {
+  margin-bottom: 0.5em; }
+
+.o-crew {
+  overflow-y: scroll; }
+  .o-crew__grid {
+    min-height: 549px; }
+  .o-crew__item:nth-child(2n) .o-crew__name {
+    float: right;
+    padding-left: 1em;
+    padding-right: 4em; }
+    .o-crew__item:nth-child(2n) .o-crew__name .o-format__title {
+      text-align: left; }
+  .o-crew__photo {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat; }
+  .o-crew__name {
+    display: table;
+    padding: 1em 1em 1em 4em; }
+    .o-crew__name .o-format__title {
+      vertical-align: middle;
+      display: table-cell;
+      width: 100%;
+      max-width: 70%;
+      text-align: right; }
+  @media (max-width: 767px) {
+    .o-crew__name, .o-crew__photo {
+      height: 100%; } }
+
+.o-about__desc {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle; }
+
+.o-about__text {
+  display: inline-block;
+  width: 100%;
+  max-width: 1000px;
+  font-family: Chalet;
+  font-size: 1.5em;
+  color: #7cbfbb; }
+  @media (min-width: 768px) {
+    .o-about__text {
+      font-size: 2em; } }
+  @media (min-width: 1401px) {
+    .o-about__text {
+      font-size: 3em; } }
+
+.o-logo {
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 3em;
+  font-family: Chalet;
+  color: #7cbfbb; }
+  @media (min-width: 1025px) {
+    .o-logo {
+      font-size: 5em; } }
+  @media (min-width: 1367px) {
+    .o-logo {
+      font-size: 8em; } }
+
+.o-format__title {
+  margin-top: 0;
+  color: #7cbfbb; }
+
+.o-format__text {
+  margin-bottom: 1em;
+  color: #808080; }
+
+.o-format__title, .o-format__text {
+  font-style: italic; }
+
+.o-close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: black; }

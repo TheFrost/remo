@@ -26,6 +26,42 @@
   }
 }
 
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+	@return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+
+// Settings
+$c_turquoise: #7cbfbb;
+$c_gray: #808080;
+
 // Utils
 .u-cf:before,
 .u-cf:after {
@@ -56,13 +92,19 @@
 }
 
 // Base Styles
+@include font-face(Chalet, '../fonts/chalet-ny-1970', 700, normal, eot svg woff2 woff);
+
 html,
 body {
   width: 100%;
   height: 100%;
+  font-size: 16px;
 }
 
 body {
+  position: fixed;
+  top: 0;
+  left: 0;
   margin: 0;
   padding: 0;
   background-color: #e2e1e0;
@@ -86,6 +128,19 @@ figure {
     display: none;
     @include media(">=tablet") {
       display: block;
+    }
+    .o-case {
+      &__info {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+      }
+      &__media {
+        width: 100%;
+        min-height: 100%;
+        background-color: black;
+      }
     }
   }
   &--mobile {
@@ -112,6 +167,14 @@ figure {
     &.js-show-content {
       .o-curtain {
         height: calc(100% / 4 * 3);
+      }
+    }
+
+    .o-card {
+      &__face--back {
+        display: table;
+        text-align: center;
+        background-size: contain;
       }
     }
   }
@@ -144,7 +207,7 @@ figure {
     }
     &--back {
       transform: rotateY(180deg);
-      background: #000;
+      background: white;
       color: white;
     }
   }
@@ -152,6 +215,8 @@ figure {
     float: left;
     height: 100%;
     &-a {
+      position: relative;
+      z-index: 10;
       width: calc(100% / 4 * 3);
     }
     &-b {
@@ -167,14 +232,28 @@ figure {
   }
   &--about {
     &-a {
-      .o-card__face--front {
-        background: url('../images/tocs/1-toc.png') no-repeat center center;
-        background-size: cover;
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/1-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+        &--back {
+          display: table;
+          padding: 1em;
+          text-align: center;
+        }
       }
     }
     &-b {
       width: 100%;
       height: calc(100% / 3 * 2);
+
+      .o-card__face {
+        &--back {
+          display: table;
+          padding: 1em;
+        }
+      }
 
       .o-brick {
         height: calc(100% / 2);
@@ -190,9 +269,19 @@ figure {
   }
   &--crew {
     &-a {
-      .o-card__face--front {
-        background: url('../images/tocs/6-toc.png') no-repeat center center;
-        background-size: cover;
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/6-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+        &--back {
+          display: table;
+          text-align: center;
+          .o-format__title {
+            display: table-cell;
+            vertical-align: middle;
+          }
+        }
       }
     }
     &-b {
@@ -202,6 +291,13 @@ figure {
       z-index: 100;
       width: 50%;
       height: 100%;
+
+      .o-crew {
+        &__name,
+        &__photo {
+          height: 100%;
+        }
+      }
 
       .o-card__face--front {
         > .o-brick {
@@ -217,7 +313,7 @@ figure {
   float: left;
   width: 50%;
   height: 100%;
-  @include media(">tablet") {
+  @include media(">=tablet") {
     &:nth-child(1) {
       width: calc(100% / 3);
 
@@ -279,6 +375,24 @@ figure {
 }
 
 
+.o-content {
+  @extend .u-fullsize;
+  background: white;
+  &--crew {
+    .o-crew {
+      &__item {
+        width: 100%;
+        height: calc(100% / 3);
+      }
+    }
+  }
+  &--about {
+    display: table;
+    text-align: center;
+  }
+}
+
+
 .o-curtain {
   position: absolute;
   left: 0;
@@ -290,8 +404,141 @@ figure {
   overflow-y: scroll;
 }
 
-.o-content {
-  h1, p {
-    color: white;
+.o-case {
+  &__info,
+  &__media {
+    padding: 1em;
   }
+  &__media {
+    overflow-y: scroll;
+  }
+  &__info {
+    background-color: #fff;
+    @include media('>tablet') {
+      padding-top: 3em;
+    }
+    .o-format {
+      &__title {
+        margin-bottom: 0.5em;
+      }
+      &__text {
+        margin-top: 0;
+        margin-bottom: 1em;
+      }
+    }
+  }
+  &__logo {
+    margin-bottom: 1em;
+    text-align: center;
+    img {
+      display: inline-block;
+    }
+  }
+  .o-format__title {
+    margin-bottom: 0.5em;
+  }
+}
+
+.o-crew {
+  overflow-y: scroll;
+  &__grid {
+    min-height: 549px;
+  }
+  &__item {
+    &:nth-child(2n) {
+      .o-crew {
+        &__name {
+          float: right;
+          padding-left: 1em;
+          padding-right: 4em;
+          .o-format__title {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  &__photo {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &__name {
+    display: table;
+    padding: 1em 1em 1em 4em;
+    .o-format__title {
+      vertical-align: middle;
+      display: table-cell;
+      width: 100%;
+      max-width: 70%;
+      text-align: right;
+    }
+  }
+  @include media("<tablet") {
+    &__name,
+    &__photo {
+      height: 100%;
+    }
+  }
+}
+
+.o-about {
+  &__desc {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__text {
+    display: inline-block;
+    width: 100%;
+    max-width: 1000px;
+    font-family: Chalet;
+    font-size: 1.5em;
+    color: $c_turquoise;
+    @include media('>=tablet') {
+      font-size: 2em;
+    }
+    @include media('>1400px') {
+      font-size: 3em;
+    }
+  }
+}
+
+.o-logo {
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 3em;
+  font-family: Chalet;
+  color: $c_turquoise;
+
+  @include media('>desktop') {
+    font-size: 5em;
+  }
+
+  @include media('>1366px') {
+    font-size: 8em;
+  }
+}
+
+
+.o-format {
+  &__title {
+    margin-top: 0;
+    color: $c_turquoise;
+  }
+  &__text {
+    margin-bottom: 1em;
+    color: $c_gray;
+  }
+  &__title,
+  &__text {
+    font-style: italic;
+  }
+}
+
+.o-close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: black;
 }
