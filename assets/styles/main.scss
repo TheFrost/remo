@@ -201,6 +201,12 @@ figure {
       transform: rotateY(180deg);
       background: white;
       color: white;
+      display: table;
+      text-align: center;
+      .o-format__title {
+        display: table-cell;
+        vertical-align: middle;
+      }
     }
   }
   &--case {
@@ -271,14 +277,6 @@ figure {
         &--front {
           background: url('../images/tocs/6-toc.png') no-repeat center center;
           background-size: cover;
-        }
-        &--back {
-          display: table;
-          text-align: center;
-          .o-format__title {
-            display: table-cell;
-            vertical-align: middle;
-          }
         }
       }
     }

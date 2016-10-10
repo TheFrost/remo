@@ -61,16 +61,19 @@ figure {
       display: block; } }
 
 .o-layout--mobile {
+  -webkit-transition: all 0.6s ease-in-out;
   transition: all 0.6s ease-in-out; }
   @media (min-width: 768px) {
     .o-layout--mobile {
       display: none; } }
   .o-layout--mobile.js-translate-up {
-    transform: translate3d(0, calc((100% / 4) * -1), 0); }
+    -webkit-transform: translate3d(0, calc((100% / 4) * -1), 0);
+            transform: translate3d(0, calc((100% / 4) * -1), 0); }
     .o-layout--mobile.js-translate-up.js-show-content .o-curtain {
       top: calc(100% / 4 * 2); }
   .o-layout--mobile.js-translate-down {
-    transform: translate3d(0, calc(100% / 4), 0); }
+    -webkit-transform: translate3d(0, calc(100% / 4), 0);
+            transform: translate3d(0, calc(100% / 4), 0); }
     .o-layout--mobile.js-translate-down.js-show-content .o-curtain {
       bottom: calc(100% / 4 * 2); }
   .o-layout--mobile.js-show-content .o-curtain {
@@ -83,29 +86,41 @@ figure {
     background-repeat: no-repeat; }
 
 .o-card {
-  perspective: 1500px;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
   background-color: #e2e1e0; }
   .o-card.js-flip > .o-card__flipper {
-    transform: rotateY(180deg); }
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg); }
   .o-card__flipper {
     position: relative;
     display: block;
-    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: all 0.6s ease-in-out;
     transition: all 0.6s ease-in-out; }
   .o-card__face {
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    backface-visibility: hidden; }
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; }
     .o-card__face--front {
       z-index: 10;
       background: #fff;
-      transform: rotateY(0); }
+      -webkit-transform: rotateY(0);
+              transform: rotateY(0); }
     .o-card__face--back {
-      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+              transform: rotateY(180deg);
       background: white;
-      color: white; }
+      color: white;
+      display: table;
+      text-align: center; }
+      .o-card__face--back .o-format__title {
+        display: table-cell;
+        vertical-align: middle; }
   .o-card--case {
     float: left;
     height: 100%; }
@@ -155,12 +170,6 @@ figure {
   .o-card--crew-a .o-card__face--front {
     background: url("../images/tocs/6-toc.png") no-repeat center center;
     background-size: cover; }
-  .o-card--crew-a .o-card__face--back {
-    display: table;
-    text-align: center; }
-    .o-card--crew-a .o-card__face--back .o-format__title {
-      display: table-cell;
-      vertical-align: middle; }
   .o-card--crew-b {
     position: absolute;
     top: 0;
@@ -252,7 +261,8 @@ figure {
         background: url("../images/tocs/9-toc.png") no-repeat center center;
         background-size: cover;
         top: 0;
-        transform: translateY(-100%); }
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%); }
       .o-brick:nth-child(2):after {
         content: '';
         position: absolute;
@@ -262,7 +272,8 @@ figure {
         background: url("../images/tocs/10-toc.png") no-repeat center center;
         background-size: cover;
         top: 0;
-        transform: translateY(-100%); }
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%); }
       .o-brick:nth-child(7):after {
         content: '';
         position: absolute;
@@ -272,7 +283,8 @@ figure {
         background: url("../images/tocs/11-toc.png") no-repeat center center;
         background-size: cover;
         bottom: 0;
-        transform: translateY(100%); }
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%); }
       .o-brick:nth-child(8):after {
         content: '';
         position: absolute;
@@ -282,7 +294,8 @@ figure {
         background: url("../images/tocs/12-toc.png") no-repeat center center;
         background-size: cover;
         bottom: 0;
-        transform: translateY(100%); } }
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%); } }
   .o-brick--half {
     width: calc(100% / 2); }
 
@@ -298,6 +311,7 @@ figure {
   z-index: 100;
   width: 100%;
   height: 0;
+  -webkit-transition: height 0.6s ease-in-out;
   transition: height 0.6s ease-in-out;
   background-color: #000;
   overflow-y: scroll; }
