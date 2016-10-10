@@ -202,10 +202,10 @@ figure {
       background: white;
       color: white;
       display: table;
-      text-align: center;
       .o-format__title {
         display: table-cell;
         vertical-align: middle;
+        text-align: center;
       }
     }
   }
@@ -303,6 +303,19 @@ figure {
       }
     }
   }
+  &--imgday {
+    .o-card__face {
+      &--front {
+        background: url('../images/tocs/9-toc.png') center center no-repeat;
+        background-size: cover;
+      }
+      &--back {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+      }
+    }
+  }
 }
 
 .o-col {
@@ -314,7 +327,7 @@ figure {
       width: calc(100% / 3);
 
       > .o-brick {
-        $tocs: "exception", 5, 9;
+        $tocs: "exception", 5;
         @include apply-brick-bg($tocs, 1);
       }
     }

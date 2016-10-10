@@ -4,13 +4,6 @@
   var Desktop = (function() {
 
     var
-    /*Public*/
-    init = function (_bricks) {
-      _cache = _getSelectors(_bricks);
-      _bindEvents();
-      _renderCrew();
-    },
-
     /*Private*/
     _cache = null,
     _getSelectors = function (_bricks) {
@@ -28,6 +21,7 @@
         root: $('html body'),
         body: $('body'),
         actionLinks: $('.o-case__actions-link'),
+        imgDayContainer: $('#imgday-desktop'),
         currentType: null
       }
     },
@@ -95,6 +89,9 @@
         }, 500);
       }
     },
+    _renderImgDay = function () {
+      _cache.imgDayContainer.css('background-image', 'url(' + Service.dayImg[0].url + ')');
+    },
     _renderCase = function (_slug) {
       var _sourceInfo = _cache.infoTemplate.html(),
           _sourceMedia = _cache.mediaTemplate.html(),
@@ -151,7 +148,15 @@
       if (_type === 'case') {
         Utils.resetScroll(_cache.root);
       }
-  	};
+  	},
+
+    /*Public*/
+    init = function (_bricks) {
+      _cache = _getSelectors(_bricks);
+      _bindEvents();
+      _renderCrew();
+      _renderImgDay();
+    };
 
     return {
       init: init
