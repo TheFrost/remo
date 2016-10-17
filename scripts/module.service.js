@@ -22,7 +22,13 @@
           _self = Service;
 
       $.when(_getCases, _getCrew, _getDayImg).done(function (_casesData, _crewData, _dayImgData) {
-        $('.splash').fadeOut(300);
+
+        setTimeout(function () {
+          $('.o-splash__inner').removeClass('js-show');
+          setTimeout(function () {
+            $('.o-splash').fadeOut(300);
+          }, 1500);
+        }, 5000);
 
         _self.cases = _casesData[0].map(function (item, index) {
           return {
@@ -73,6 +79,9 @@
     /*Public*/
     init = function () {
       _fetch();
+      setTimeout(function () {
+        $('.o-splash__inner').addClass('js-show');
+      }, 1000);
     };
 
     return {

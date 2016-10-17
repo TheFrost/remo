@@ -15,7 +15,12 @@
 
 <body class="js-noscroll">
 
-	<div class="splash" style="position:fixed;width:100%;height:100%;background-color:black;z-index:9999;"></div>
+	<div class="o-splash">
+		<div class="o-splash__inner">
+			<div class="o-splash__sprite"></div>
+			<h1 class="o-logo">remo</h1>
+		</div>
+	</div>
 
 	<div class="wrapper u-fullsize">
 		<div class="o-layout o-layout--desktop u-fullsize">
@@ -172,6 +177,7 @@
 	<!-- Libs -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/handlebars/handlebars.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
 
 
 	<!-- Handelbars Template -->
@@ -217,74 +223,78 @@
 
 	<script id="case-template-info" type="text/x-handlebars-template">
 		<div class="o-case__info">
-			<a href="#" class="o-close">
-				<img src="images/icon-close.svg" class="u-imgresponsive" alt="">
-			</a>
-			<figure class="o-case__logo">
-				<img src="{{logo}}" class="u-imgresponsive" alt="">
-			</figure>
-			<h1 class="o-format__title">Problema</h1>
-			<p class="o-format__text">{{problem}}</p>
-			<h1 class="o-format__title">Solución</h1>
-			<p class="o-format__text">{{solution}}</p>
-			<ul class="o-case__actions u-list-unstyled">
-				<li class="o-case__actions-item">
-					<a href="#" class="o-case__actions-link o-case__actions-link--seemore">ver <br> más</a>
-				</li>
-				{{#if video}}
-				<li class="o-case__actions-item">
-					<a href="#media-video" class="o-case__actions-link">
-						<img src="images/icon-tv.png" alt="">
-					</a>
-				</li>
-				{{/if}}
-				{{#if audio}}
-				<li class="o-case__actions-item">
-					<a href="#media-audio" class="o-case__actions-link">
-						<img src="images/icon-radio.png" alt="">
-					</a>
-				</li>
-				{{/if}}
-				{{#if media}}
-				<li class="o-case__actions-item">
-					<a href="#media-img" class="o-case__actions-link">
-						<img src="images/icon-picture.png" alt="">
-					</a>
-				</li>
-				{{/if}}
-			</ul>
+			<div class="o-case__info-inner">
+				<a href="#" class="o-close">
+					<img src="images/icon-close.svg" class="u-imgresponsive" alt="">
+				</a>
+				<figure class="o-case__logo">
+					<img src="{{logo}}" class="u-imgresponsive" alt="">
+				</figure>
+				<h1 class="o-format__title">Problema</h1>
+				<p class="o-format__text">{{problem}}</p>
+				<h1 class="o-format__title">Solución</h1>
+				<p class="o-format__text">{{solution}}</p>
+				<ul class="o-case__actions u-list-unstyled">
+					<li class="o-case__actions-item">
+						<a href="#" class="o-case__actions-link o-case__actions-link--seemore">ver <br> más</a>
+					</li>
+					{{#if video}}
+					<li class="o-case__actions-item">
+						<a href="#media-video" class="o-case__actions-link">
+							<img src="images/icon-tv.png" alt="">
+						</a>
+					</li>
+					{{/if}}
+					{{#if audio}}
+					<li class="o-case__actions-item">
+						<a href="#media-audio" class="o-case__actions-link">
+							<img src="images/icon-radio.png" alt="">
+						</a>
+					</li>
+					{{/if}}
+					{{#if media}}
+					<li class="o-case__actions-item">
+						<a href="#media-img" class="o-case__actions-link">
+							<img src="images/icon-picture.png" alt="">
+						</a>
+					</li>
+					{{/if}}
+				</ul>
+			</div>
 		</div>
 	</script>
 
 	<script id="case-template-media" type="text/x-handlebars-template">
 		<div class="o-case__resources">
-			{{#if media}}
-			<div class="o-case__media" id="media-img">
-				{{#each media}}
-				<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
-				{{/each}}
-			</div>
-			{{/if}}
-
-			{{#if audio}}
-			<div class="o-case__media" id="media-audio">
-				<audio controls>
-					{{#each audio}}
-					<source src="{{this.url_audio}}" type="{{this.mime_type}}">
+			<div class="o-case__resources-inner">
+				{{#if media}}
+				<div class="o-case__resources-group" id="media-img">
+					{{#each media}}
+					<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
 					{{/each}}
-				</audio>
-			</div>
-			{{/if}}
-
-			{{#if video}}
-			<div class="o-case__media" id="media-video">
-				{{#each video}}
-				<div class="o-case__video">
-					<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 				</div>
-				{{/each}}
+				{{/if}}
+
+				{{#if audio}}
+				<div class="o-case__resources-group" id="media-audio">
+					<audio controls>
+						{{#each audio}}
+						<source src="{{this.url_audio}}" type="{{this.mime_type}}">
+						{{/each}}
+					</audio>
+				</div>
+				{{/if}}
+
+				{{#if video}}
+				<div class="o-case__resources-group" id="media-video">
+					{{#each video}}
+					<div class="o-case__video">
+						<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+					{{/each}}
+				</div>
+				{{/if}}
 			</div>
-			{{/if}}
 		</div>
 	</div>
 	</script>

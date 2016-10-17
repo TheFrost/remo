@@ -38,7 +38,6 @@
 
         if (_type === 'case') {
           _renderCase(_slug);
-          _cache.body.removeClass('js-noscroll');
         }
 
         if (_that.hasClass('js-flip')) {
@@ -51,29 +50,28 @@
 
         _cache.currentType = _type;
       });
-      _cache.doc.on('click', '.o-close', function (evt) {
-        evt.preventDefault();
 
-        _closeCase();
-      });
+      var _closeCaseFn = _.debounce(_closeCase, 300);
+      _cache.doc.on('click', '.o-close', _closeCaseFn);
+
       _cache.doc.on('click', '.o-case__actions-link', function (evt) {
         evt.preventDefault();
 
-        var _hash = $(this).attr('href');
+        var _that = $(this),
+            _hash = _that.attr('href');
 
-        _scrollTo(_hash);
+        _scrollTo(_cache.caseMediaContainer.find('.o-case__resources'), _hash);
       });
     },
-    _scrollTo = function (_hash) {
+    _scrollTo = function (_container, _hash) {
       var _anchor = $(_hash),
-          _distance = _anchor.offset().top;
+          _distance = _anchor.position().top + _container.scrollTop();
 
-      _cache.root.animate({scrollTop: _distance}, 500);
+      _container.animate({scrollTop: _distance}, 500);
     },
     _closeCase = function () {
       if (_cache.root.scrollTop() > 0) {
         _cache.root.animate({scrollTop: 0}, 500, 'swing', function () {
-          _cache.body.addClass('js-noscroll');
           _flip('case');
           setTimeout(function () {
             Utils.cleanContainer(_cache.caseInfoContainer);
@@ -81,7 +79,6 @@
           }, 500);
         });
       } else {
-        _cache.body.addClass('js-noscroll');
         _flip('case');
         setTimeout(function () {
           Utils.cleanContainer(_cache.caseInfoContainer);

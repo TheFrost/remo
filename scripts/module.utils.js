@@ -13,7 +13,6 @@
         return _template(_context);
       },
       resetScroll: function (_el) {
-        console.log(_el);
         _el.scrollTop(0);
       },
       cleanContainer: function (_container) {

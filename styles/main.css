@@ -54,6 +54,61 @@ figure {
 .js-hide {
   display: none; }
 
+.o-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 9999; }
+  .o-splash__inner {
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out; }
+    .o-splash__inner.js-show {
+      opacity: 1; }
+  .o-splash__sprite {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: url("../images/tocs/tocs-sprite.png");
+    background-position: center top;
+    -webkit-animation: tocsLoad 1s steps(12) infinite;
+            animation: tocsLoad 1s steps(12) infinite;
+    opacity: 0;
+    border-radius: 50%;
+    overflow: hidden; }
+  .o-splash .o-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    font-size: 5em;
+    display: block;
+    margin: 0; }
+
+@-webkit-keyframes tocsLoad {
+  50% {
+    opacity: 0.8; }
+  100% {
+    background-position: 0 3360px;
+    opacity: 0; } }
+
+@keyframes tocsLoad {
+  50% {
+    opacity: 0.8; }
+  100% {
+    background-position: 0 3360px;
+    opacity: 0; } }
+
 .o-layout--desktop {
   display: none; }
   @media (min-width: 768px) {
@@ -61,16 +116,19 @@ figure {
       display: block; } }
 
 .o-layout--mobile {
+  -webkit-transition: all 0.6s ease-in-out;
   transition: all 0.6s ease-in-out; }
   @media (min-width: 768px) {
     .o-layout--mobile {
       display: none; } }
   .o-layout--mobile.js-translate-up {
-    transform: translate3d(0, calc((100% / 4) * -1), 0); }
+    -webkit-transform: translate3d(0, calc((100% / 4) * -1), 0);
+            transform: translate3d(0, calc((100% / 4) * -1), 0); }
     .o-layout--mobile.js-translate-up.js-show-content .o-curtain {
       top: calc(100% / 4 * 2); }
   .o-layout--mobile.js-translate-down {
-    transform: translate3d(0, calc(100% / 4), 0); }
+    -webkit-transform: translate3d(0, calc(100% / 4), 0);
+            transform: translate3d(0, calc(100% / 4), 0); }
     .o-layout--mobile.js-translate-down.js-show-content .o-curtain {
       bottom: calc(100% / 4 * 2); }
   .o-layout--mobile.js-show-content .o-curtain {
@@ -83,27 +141,34 @@ figure {
     background-repeat: no-repeat; }
 
 .o-card {
-  perspective: 1500px;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
   background-color: #e2e1e0; }
   .o-card.js-flip > .o-card__flipper {
-    transform: rotateY(180deg); }
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg); }
   .o-card__flipper {
     position: relative;
     display: block;
-    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: all 0.6s ease-in-out;
     transition: all 0.6s ease-in-out; }
   .o-card__face {
     position: absolute;
     top: 0;
     left: 0;
     display: block;
-    backface-visibility: hidden; }
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; }
     .o-card__face--front {
       z-index: 10;
       background: #fff;
-      transform: rotateY(0); }
+      -webkit-transform: rotateY(0);
+              transform: rotateY(0); }
     .o-card__face--back {
-      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+              transform: rotateY(180deg);
       background: white;
       color: white;
       display: table; }
@@ -255,7 +320,8 @@ figure {
         background: url("../images/tocs/9-toc.png") no-repeat center center;
         background-size: cover;
         top: 0;
-        transform: translateY(-100%); }
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%); }
       .o-brick:nth-child(2):after {
         content: '';
         position: absolute;
@@ -265,7 +331,8 @@ figure {
         background: url("../images/tocs/10-toc.png") no-repeat center center;
         background-size: cover;
         top: 0;
-        transform: translateY(-100%); }
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%); }
       .o-brick:nth-child(7):after {
         content: '';
         position: absolute;
@@ -275,7 +342,8 @@ figure {
         background: url("../images/tocs/11-toc.png") no-repeat center center;
         background-size: cover;
         bottom: 0;
-        transform: translateY(100%); }
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%); }
       .o-brick:nth-child(8):after {
         content: '';
         position: absolute;
@@ -285,7 +353,8 @@ figure {
         background: url("../images/tocs/12-toc.png") no-repeat center center;
         background-size: cover;
         bottom: 0;
-        transform: translateY(100%); } }
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%); } }
   .o-brick--half {
     width: calc(100% / 2); }
 
@@ -301,17 +370,19 @@ figure {
   z-index: 100;
   width: 100%;
   height: 0;
+  -webkit-transition: height 0.6s ease-in-out;
   transition: height 0.6s ease-in-out;
   background-color: #000;
   overflow-y: scroll; }
 
 .o-case__resources {
   width: 100%;
-  min-height: 100%;
-  padding: 1em;
+  height: 100%;
   text-align: center;
   background-color: black;
   overflow-y: scroll; }
+  .o-case__resources-inner {
+    padding: 1em; }
   .o-case__resources-group {
     max-width: 1024px;
     margin: 0 auto; }
@@ -336,12 +407,10 @@ figure {
 .o-case__info {
   width: 100%;
   height: 100%;
-  padding: 1em;
   background-color: #fff;
   overflow-y: scroll; }
-  @media (min-width: 769px) {
-    .o-case__info {
-      padding-top: 3em; } }
+  .o-case__info-inner {
+    padding: 3em 1em 1em; }
   .o-case__info .o-format__title {
     margin-bottom: 0.5em; }
   .o-case__info .o-format__text {
