@@ -232,10 +232,12 @@
 	<script id="case-template" type="text/x-handlebars-template">
 		<div class="o-case">
 			<div class="o-case__info">
-				<h1 class="o-format__title">Problema</h1>
-				<p class="o-format__text">{{problem}}</p>
-				<h1 class="o-format__title">Solución</h1>
-				<p class="o-format__text">{{solution}}</p>
+				<div class="o-case__info-inner">
+					<h1 class="o-format__title">Problema</h1>
+					<p class="o-format__text">{{problem}}</p>
+					<h1 class="o-format__title">Solución</h1>
+					<p class="o-format__text">{{solution}}</p>
+				</div>
 			</div>
 			<div class="o-case__resources">
 				{{#if media}}
