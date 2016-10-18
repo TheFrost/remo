@@ -16,7 +16,7 @@
   padding: 0;
   list-style: none; }
 
-.u-fullsize, .o-content {
+.u-fullsize, .o-card--about-b, .o-content {
   width: 100%;
   height: 100%; }
 
@@ -40,7 +40,8 @@ body {
   left: 0;
   margin: 0;
   padding: 0;
-  background-color: #e2e1e0; }
+  background-color: #fff;
+  font-family: 'Cabin Condensed', sans-serif; }
   body.js-noscroll {
     position: fixed;
     overflow: hidden; }
@@ -51,6 +52,11 @@ body {
 figure {
   margin: 0; }
 
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+
 .js-hide {
   display: none; }
 
@@ -60,7 +66,7 @@ figure {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: white;
   z-index: 9999; }
   .o-splash__inner {
     opacity: 0;
@@ -79,7 +85,6 @@ figure {
     background-position: center top;
     animation: tocsLoad 1s steps(12) infinite;
     opacity: 0;
-    border-radius: 50%;
     overflow: hidden; }
   .o-splash .o-logo {
     position: absolute;
@@ -128,7 +133,7 @@ figure {
 
 .o-card {
   perspective: 1500px;
-  background-color: #e2e1e0; }
+  background-color: #fff; }
   .o-card.js-flip > .o-card__flipper {
     transform: rotateY(180deg); }
   .o-card__flipper {
@@ -184,23 +189,30 @@ figure {
     display: table;
     padding: 1em;
     text-align: center; }
-  .o-card--about-b {
-    width: 100%;
-    height: calc(100% / 3 * 2); }
-    .o-card--about-b .o-card__face--back {
-      display: table;
-      padding: 1em; }
-    .o-card--about-b .o-brick {
-      height: calc(100% / 2); }
-    .o-card--about-b .o-card__face--front > .o-brick:nth-child(1) {
-      background: url("../images/tocs/2-toc.png") no-repeat center center;
+  .o-card--about-b .o-brick {
+    height: calc(100% / 3); }
+  .o-card--about-b .o-card__face--front > .o-brick:nth-child(1) {
+    background: url("../images/tocs/2-toc.png") no-repeat center center;
+    background-size: cover; }
+  .o-card--about-b .o-card__face--front > .o-brick:nth-child(2) {
+    background: url("../images/tocs/3-toc.png") no-repeat center center;
+    background-size: cover; }
+  .o-card--about-b .o-card__face--front > .o-brick:nth-child(3) {
+    background: url("../images/tocs/6-toc.png") no-repeat center center;
+    background-size: cover; }
+  .o-card--about-b .o-card__face--front > .o-brick:nth-child(4) {
+    background: url("../images/tocs/7-toc.png") no-repeat center center;
+    background-size: cover; }
+  .o-card--about-b .o-card__face--front > .o-brick:nth-child(6) {
+    background: url("../images/tocs/11-toc.png") no-repeat center center;
+    background-size: cover; }
+  .o-card--contact-a {
+    cursor: pointer; }
+    .o-card--contact-a .o-card__face--front {
+      background: url("../images/tocs/10-toc.png") no-repeat center center;
       background-size: cover; }
-    .o-card--about-b .o-card__face--front > .o-brick:nth-child(2) {
-      background: url("../images/tocs/3-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--about-b .o-card__face--front > .o-brick:nth-child(4) {
-      background: url("../images/tocs/7-toc.png") no-repeat center center;
-      background-size: cover; }
+    .o-card--contact-a .o-format__title {
+      display: block; }
   .o-card--crew-a .o-card__face--front {
     background: url("../images/tocs/6-toc.png") no-repeat center center;
     background-size: cover; }
@@ -250,13 +262,7 @@ figure {
         background: url("../images/tocs/5-toc.png") no-repeat center center;
         background-size: cover; }
     .o-col:nth-child(2) {
-      width: calc(100% / 3 * 2); }
-      .o-col:nth-child(2) > .o-brick:nth-child(2) {
-        background: url("../images/tocs/10-toc.png") no-repeat center center;
-        background-size: cover; }
-      .o-col:nth-child(2) > .o-brick:nth-child(3) {
-        background: url("../images/tocs/11-toc.png") no-repeat center center;
-        background-size: cover; } }
+      width: calc(100% / 3 * 2); } }
 
 .o-brick {
   float: left;
@@ -335,7 +341,7 @@ figure {
 
 .o-content {
   background: white; }
-  .o-content--about {
+  .o-content--about, .o-content--contact {
     display: table;
     text-align: center; }
 
@@ -353,7 +359,7 @@ figure {
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: black;
+  background-color: #f4f4f4;
   overflow-y: scroll; }
   .o-case__resources-inner {
     padding: 1em; }
@@ -413,9 +419,9 @@ figure {
     .o-case__actions-link:hover {
       text-decoration: none; }
     .o-case__actions-link--seemore {
-      color: #7cbfbb; }
+      color: #8dd2cd; }
       .o-case__actions-link--seemore:hover {
-        color: #7cbfbb; }
+        color: #8dd2cd; }
 
 .o-crew {
   overflow-y: scroll; }
@@ -452,26 +458,38 @@ figure {
   text-align: center;
   vertical-align: middle; }
 
-.o-about__text {
+.o-about__block {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 2em; }
+
+.o-about__intro {
   display: inline-block;
   width: 100%;
   max-width: 1000px;
   font-family: Chalet;
-  font-size: 1.5em;
-  color: #7cbfbb; }
-  @media (min-width: 768px) {
-    .o-about__text {
-      font-size: 2em; } }
-  @media (min-width: 1401px) {
-    .o-about__text {
-      font-size: 3em; } }
+  font-size: 1em;
+  color: #8dd2cd; }
+
+.o-about__title {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: Chalet;
+  font-size: 1em;
+  color: #8dd2cd; }
+
+.o-about__text {
+  margin: 0;
+  font-style: italic;
+  font-size: 1em;
+  color: #b2b2b2; }
 
 .o-logo {
   vertical-align: middle;
   display: table-cell;
   font-size: 3em;
   font-family: Chalet;
-  color: #7cbfbb; }
+  color: #8dd2cd; }
   @media (min-width: 1025px) {
     .o-logo {
       font-size: 5em; } }
@@ -481,11 +499,11 @@ figure {
 
 .o-format__title {
   margin-top: 0;
-  color: #7cbfbb; }
+  color: #8dd2cd; }
 
 .o-format__text {
   margin-bottom: 1em;
-  color: #808080; }
+  color: #b2b2b2; }
 
 .o-format__title, .o-format__text {
   font-style: italic; }
@@ -497,3 +515,15 @@ figure {
   width: 20px;
   height: 20px;
   color: black; }
+
+.o-contact {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle; }
+  .o-contact__link {
+    display: block;
+    margin-bottom: 1em;
+    color: #b2b2b2;
+    transition: all 0.2s ease-in-out; }
+    .o-contact__link:hover {
+      color: #8dd2cd; }

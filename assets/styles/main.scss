@@ -57,10 +57,42 @@
 	}
 }
 
+@function decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @if $digits > 0 {
+        @for $i from 1 through $digits {
+            $n: $n * 10;
+        }
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
 
 // Settings
-$c_turquoise: #7cbfbb;
-$c_gray: #808080;
+$c_turquoise: #8dd2cd;
+$c_gray: #b2b2b2;
 
 // Utils
 .u-cf:before,
@@ -106,7 +138,8 @@ body {
   left: 0;
   margin: 0;
   padding: 0;
-  background-color: #e2e1e0;
+  background-color: #fff;
+  font-family: 'Cabin Condensed', sans-serif;
   &.js-noscroll {
     position: fixed;
     overflow: hidden;
@@ -119,11 +152,19 @@ figure {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 
 // Custom Syles
 .js-hide {
   display: none;
 }
+
 
 .o-splash {
   position: fixed;
@@ -131,7 +172,7 @@ figure {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: white;
   z-index: 9999;
   &__inner {
     opacity: 0;
@@ -152,7 +193,6 @@ figure {
     background-position: center top;
     animation: tocsLoad 1s steps(12) infinite;
     opacity: 0;
-    border-radius: 50%;
     overflow: hidden;
   }
   .o-logo {
@@ -225,7 +265,7 @@ figure {
 
 .o-card {
   perspective: 1500px;
-  background-color: #e2e1e0;
+  background-color: #fff;
   &.js-flip {
     > .o-card__flipper {
       transform: rotateY(180deg);
@@ -301,25 +341,31 @@ figure {
       }
     }
     &-b {
-      width: 100%;
-      height: calc(100% / 3 * 2);
-
-      .o-card__face {
-        &--back {
-          display: table;
-          padding: 1em;
-        }
-      }
+      @extend .u-fullsize;
 
       .o-brick {
-        height: calc(100% / 2);
+        height: calc(100% / 3);
       }
 
       .o-card__face--front {
         > .o-brick {
-          $tocs: 2, 3, "exception", 7;
-          @include apply-brick-bg($tocs, 3);
+          $tocs: 2, 3, 6, 7, "exception", 11;
+          @include apply-brick-bg($tocs, 5);
         }
+      }
+    }
+  }
+  &--contact {
+    &-a {
+      cursor: pointer;
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/10-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+      }
+      .o-format__title {
+        display: block;
       }
     }
   }
@@ -386,11 +432,6 @@ figure {
     }
     &:nth-child(2) {
       width: calc(100% / 3 * 2);
-
-      > .o-brick {
-        $tocs: "exception", 10, 11;
-        @include apply-brick-bg($tocs, 1);
-      }
     }
   }
 }
@@ -440,7 +481,8 @@ figure {
 .o-content {
   @extend .u-fullsize;
   background: white;
-  &--about {
+  &--about,
+  &--contact {
     display: table;
     text-align: center;
   }
@@ -463,7 +505,7 @@ figure {
     width: 100%;
     height: 100%;
     text-align: center;
-    background-color: black;
+    background-color: #f4f4f4;
     overflow-y: scroll;
 
     &-inner {
@@ -603,19 +645,31 @@ figure {
     text-align: center;
     vertical-align: middle;
   }
-  &__text {
+  &__block {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 2em;
+  }
+  &__intro {
     display: inline-block;
     width: 100%;
     max-width: 1000px;
     font-family: Chalet;
-    font-size: 1.5em;
+    font-size: 1em;
     color: $c_turquoise;
-    @include media('>=tablet') {
-      font-size: 2em;
-    }
-    @include media('>1400px') {
-      font-size: 3em;
-    }
+  }
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Chalet;
+    font-size: 1em;
+    color: $c_turquoise;
+  }
+  &__text {
+    margin: 0;
+    font-style: italic;
+    font-size: 1em;
+    color: $c_gray;
   }
 }
 
@@ -658,4 +712,20 @@ figure {
   width: 20px;
   height: 20px;
   color: black;
+}
+
+
+.o-contact {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  &__link {
+    display: block;
+    margin-bottom: 1em;
+    color: $c_gray;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $c_turquoise;
+    }
+  }
 }
