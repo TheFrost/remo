@@ -270,7 +270,7 @@ a {
   .o-card--imgday .o-card__face--back {
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: contain; }
+    background-size: cover; }
 
 .o-col {
   float: left;
