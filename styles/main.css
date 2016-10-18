@@ -141,7 +141,7 @@ a {
   .o-layout--mobile .o-card__face--back {
     display: table;
     text-align: center;
-    background-size: contain;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat; }
 
@@ -490,8 +490,6 @@ a {
 
 .o-about__intro {
   display: inline-block;
-  width: 100%;
-  max-width: 1000px;
   font-family: Chalet;
   font-size: 1em;
   color: #8dd2cd; }
@@ -508,6 +506,14 @@ a {
   font-style: italic;
   font-size: 1em;
   color: #b2b2b2; }
+
+@media (min-width: 1367px) {
+  .o-about__block {
+    max-width: 600px; }
+  .o-about__intro, .o-about__title {
+    font-size: 2em; }
+  .o-about__text {
+    font-size: 1.5em; } }
 
 .o-logo {
   vertical-align: middle;
@@ -547,9 +553,12 @@ a {
   vertical-align: middle; }
   .o-contact__link {
     display: block;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
     color: #b2b2b2;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out; }
     .o-contact__link:hover {
       color: #8dd2cd; }
+    .o-contact__link:last-child {
+      margin: 0; }

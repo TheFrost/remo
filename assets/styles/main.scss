@@ -256,7 +256,7 @@ a {
       &__face--back {
         display: table;
         text-align: center;
-        background-size: contain;
+        background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
@@ -652,8 +652,6 @@ a {
   }
   &__intro {
     display: inline-block;
-    width: 100%;
-    max-width: 1000px;
     font-family: Chalet;
     font-size: 1em;
     color: $c_turquoise;
@@ -670,6 +668,21 @@ a {
     font-style: italic;
     font-size: 1em;
     color: $c_gray;
+  }
+}
+
+@include media(">1366px") {
+  .o-about {
+    &__block {
+      max-width: 600px;
+    }
+    &__intro,
+    &__title {
+      font-size: 2em;
+    }
+    &__text {
+      font-size: 1.5em;
+    }
   }
 }
 
@@ -721,11 +734,15 @@ a {
   vertical-align: middle;
   &__link {
     display: block;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
     color: $c_gray;
     transition: all 0.2s ease-in-out;
     &:hover {
       color: $c_turquoise;
+    }
+    &:last-child {
+      margin: 0;
     }
   }
 }
