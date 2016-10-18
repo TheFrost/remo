@@ -500,7 +500,6 @@ figure {
     width: 100%;
     height: 100%;
     background-color: #fff;
-    overflow-y: scroll;
 
     &-inner {
       padding: 3em 1em 1em;
@@ -654,7 +653,7 @@ figure {
 .o-close {
   position: absolute;
   top: 1em;
-  right: 1em;
+  right: 2em;
   width: 20px;
   height: 20px;
   color: black;
