@@ -57,10 +57,42 @@
 	}
 }
 
+@function decimal-round ($number, $digits: 0, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @if $digits > 0 {
+        @for $i from 1 through $digits {
+            $n: $n * 10;
+        }
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}
+
 
 // Settings
-$c_turquoise: #7cbfbb;
-$c_gray: #808080;
+$c_turquoise: #8dd2cd;
+$c_gray: #b2b2b2;
 
 // Utils
 .u-cf:before,
@@ -106,7 +138,8 @@ body {
   left: 0;
   margin: 0;
   padding: 0;
-  background-color: #e2e1e0;
+  background-color: #fff;
+  font-family: 'Cabin Condensed', sans-serif;
   &.js-noscroll {
     position: fixed;
     overflow: hidden;
@@ -131,7 +164,7 @@ figure {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: white;
   z-index: 9999;
   &__inner {
     opacity: 0;
@@ -152,7 +185,6 @@ figure {
     background-position: center top;
     animation: tocsLoad 1s steps(12) infinite;
     opacity: 0;
-    border-radius: 50%;
     overflow: hidden;
   }
   .o-logo {
@@ -225,7 +257,7 @@ figure {
 
 .o-card {
   perspective: 1500px;
-  background-color: #e2e1e0;
+  background-color: #fff;
   &.js-flip {
     > .o-card__flipper {
       transform: rotateY(180deg);
@@ -386,7 +418,6 @@ figure {
     }
     &:nth-child(2) {
       width: calc(100% / 3 * 2);
-
       > .o-brick {
         $tocs: "exception", 10, 11;
         @include apply-brick-bg($tocs, 1);
@@ -463,7 +494,7 @@ figure {
     width: 100%;
     height: 100%;
     text-align: center;
-    background-color: black;
+    background-color: #f4f4f4;
     overflow-y: scroll;
 
     &-inner {
