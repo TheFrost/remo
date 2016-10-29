@@ -5,16 +5,16 @@
 
     var
     /*Private*/
-    // _method = {
-    //   posts: 'http://suhkhadev.uphero.com/remo/wp-json/wp/v2/posts?order=desc&categories=1&status=publish&per_page=8',
-    //   crew: 'http://suhkhadev.uphero.com/remo/wp-json/wp/v2/posts?categories=5',
-    //   dayImg: 'http://suhkhadev.uphero.com/remo/wp-json/wp/v2/posts?categories=6'
-    // },
     _method = {
-      posts: '/scripts/json/posts.json',
-      crew: '/scripts/json/team.json',
-      dayImg: '/scripts/json/imagen-del-dia.json'
+      posts: 'http://iloveremo.com/wp-json/wp/v2/posts?order=desc&categories=1&status=publish&per_page=8',
+      crew: 'http://iloveremo.com/wp-json/wp/v2/posts?categories=5',
+      dayImg: 'http://iloveremo.com/wp-json/wp/v2/posts?categories=6'
     },
+    // _method = {
+    //   posts: '/scripts/json/posts.json',
+    //   crew: '/scripts/json/team.json',
+    //   dayImg: '/scripts/json/imagen-del-dia.json'
+    // },
     _fetch = function () {
       var _getCases = $.getJSON(_method.posts),
           _getCrew = $.getJSON(_method.crew),
