@@ -104,12 +104,6 @@
           target: '+=1'
       });
     },
-    _reloadABoutCarousel = function () {
-      _cache.aboutCarousel.trigger('jcarousel:reload');
-      setTimeout(function () {
-        _cache.aboutCarousel.animate({opacity: 1}, 'fast');
-      }, 200);
-    },
     _toggleAudio = function () {
       if (_cache.audioIcon.hasClass('fa-pause')) {
         _cache.audioObj[0].pause();
@@ -201,9 +195,7 @@
       /*Create/reload carousel when open about card*/
       if (_type === "about") {
         if (!_cache.aboutB.hasClass('js-flip')) {
-          setTimeout(function () {
-            _reloadABoutCarousel();
-          }, 900);
+          _initAboutCarousel();
         }
       }
 
@@ -237,7 +229,6 @@
       _bindEvents();
       _renderCrew();
       _renderImgDay();
-      _initAboutCarousel();
     };
 
     return {

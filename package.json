@@ -12,10 +12,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
+    "browser-sync": "^2.17.5",
     "node-sass": "^3.4.2",
     "nodemon": "^1.8.1",
-    "postcss-cli": "^2.6.0",
-    "browser-sync": "~2.17.5"
+    "postcss-cli": "^2.6.0"
   },
   "author": "",
   "license": "ISC"
