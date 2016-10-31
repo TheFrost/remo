@@ -20,6 +20,7 @@
     "handlebars": "^4.0.5",
     "font-awesome": "fontawesome#^4.6.3",
     "pathjs": "*",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "jcarousel": "^0.3.4"
   }
 }

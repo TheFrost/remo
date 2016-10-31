@@ -8,7 +8,7 @@
     "build-css": "node-sass --include-path scss assets/styles/main.scss styles/main.css",
     "postbuild-css": "npm run prefix-css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "serve": "browser-sync start --server './' --files './' --browser firefox"
+    "serve": "browser-sync start --server '.' --files '.' --browser firefox & npm run watch-css"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",

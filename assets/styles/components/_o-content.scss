@@ -1,0 +1,10 @@
+/*Content*/
+.o-content {
+  @extend .u-fullsize;
+  background: white;
+  &--about,
+  &--contact {
+    display: table;
+    text-align: center;
+  }
+}

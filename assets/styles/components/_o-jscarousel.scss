@@ -1,0 +1,13 @@
+/*Js Carousel*/
+.o-jcarousel {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  &__container {
+    position: relative;
+    width: 20000em;
+  }
+  &__item {
+    float: left;
+  }
+}

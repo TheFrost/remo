@@ -1,0 +1,46 @@
+/*Crew*/
+.o-crew {
+  overflow-y: scroll;
+  &__grid {
+    min-height: 549px;
+  }
+  &__item {
+    @include media('<=tablet') {
+      width: 100%;
+    }
+    &:nth-child(2n) {
+      .o-crew {
+        &__name {
+          float: right;
+          padding-left: 1em;
+          padding-right: 4em;
+          .o-format__title {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  &__photo {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &__name {
+    display: table;
+    padding: 1em 1em 1em 4em;
+    .o-format__title {
+      vertical-align: middle;
+      display: table-cell;
+      width: 100%;
+      max-width: 70%;
+      text-align: right;
+    }
+  }
+  @include media("<=tablet") {
+    &__name,
+    &__photo {
+      height: 100%;
+    }
+  }
+}

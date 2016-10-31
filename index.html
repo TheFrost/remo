@@ -40,7 +40,24 @@
 										</span>
 									</span>
 								</a>
-								<div class="o-brick"></div>
+								<a href="" class="o-brick o-card o-card--audio o-card--audio-a" data-type="audio">
+									<span class="o-card__flipper u-fullsize">
+										<span class="o-card__face o-card__face--front u-fullsize"></span>
+										<span class="o-card__face o-card__face--back u-fullsize">
+											<span class="o-audio u-fullsize">
+												<span class="o-audio__inner">
+													<span class="o-audio__ctrl js-underground-link">
+														<i class="o-audio__icon fa fa-play" aria-hidden="true"></i>
+													</span>
+													<audio class="o-audio__object o-audio__object--hidden">
+														<source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+														<source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
+													</audio>
+												</span>
+											</span>
+										</span>
+									</span>
+								</a>
 								<a href="" class="o-brick o-card o-card--imgday o-card--imgday-a" data-type="imgday">
 									<span class="o-card__flipper u-fullsize">
 										<span class="o-card__face o-card__face--front u-fullsize"></span>
@@ -62,9 +79,11 @@
 													<div class="o-card__face o-card__face--front u-fullsize"></div>
 													<div class="o-card__face o-card__face--back u-fullsize">
 														<div class="o-contact u-fullsize">
-															<h1 class="o-format__title">Get in touch</h1>
-															<a href="tel:5552117428" class="o-contact__link">55 5211 7428</a>
-															<a href="mailto:hello@iloveremo.com" class="o-contact__link">hello@iloveremo.com</a>
+															<div class="o-contact__inner u-fullsize">
+																<h1 class="o-format__title">Get in touch</h1>
+																<a href="tel:5552117428" class="o-contact__link js-underground-link">55 5211 7428</a>
+																<a href="mailto:hello@iloveremo.com" class="o-contact__link js-underground-link">hello@iloveremo.com</a>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -72,27 +91,36 @@
 											<div class="o-brick o-brick--half"></div>
 										</div>
 										<div class="o-card__face o-card__face--back u-fullsize">
-											<div class="o-about__desc">
-												<div class="o-about__block">
-													<p class="o-about__intro">remo es una agencia de publicidad a contracorriente y atípica que lleva desde 1993 siendo ininterrumpidamente libre, independiente y feliz. </p>
-												</div>
-												<div class="o-about__block">
-													<h1 class="o-about__title">All muscle no fat</h1>
-													<p class="o-about__text">Somos una agencia de tamaño medio. Sin gente de relleno. Nuestro equipo directivo está involucrado en todos los procesos.</p>
-												</div>
-												<div class="o-about__block">
-													<h1 class="o-about__title">Creative cocktail</h1>
-													<p class="o-about__text">En una misma oficina, el departamento de medios trabaja codo a codo con creativos, programadores y estrategas en cada proyecto.</p>
-												</div>
-												<div class="o-about__block">
-													<h1 class="o-about__title">Street level communication</h1>
-													<p class="o-about__text">Creatividad inteligente, pero sobre todo popular. Es fundamental que además de ser brillantes, las campañas gusten y se comenten en la calle.</p>
-												</div>
-												<div class="o-about__block">
-													<h1 class="o-about__title">361°</h1>
-													<p class="o-about__text">Más creativos y rompedores en cualquier territorio. Dedicándole la misma atención a un spot de tv, de radio, un banner o una pegatina. Lo más inesperado se puede convertir en la pieza más brillante y efectiva.</p>
+											<!-- Carousel -->
+											<div class="o-about__wrapper o-jcarousel" id="jcarousel-about">
+												<div class="o-about__desc o-jcarousel__container u-cf">
+													<div class="o-about__block o-jcarousel__item">
+														<p class="o-about__intro">remo es una agencia de publicidad a contracorriente y atípica que lleva desde 1993 siendo ininterrumpidamente libre, independiente y feliz. </p>
+													</div>
+													<div class="o-about__block o-jcarousel__item">
+														<h1 class="o-about__title">All muscle no fat</h1>
+														<p class="o-about__text">Somos una agencia de tamaño medio. Sin gente de relleno. Nuestro equipo directivo está involucrado en todos los procesos.</p>
+													</div>
+													<div class="o-about__block o-jcarousel__item">
+														<h1 class="o-about__title">Creative cocktail</h1>
+														<p class="o-about__text">En una misma oficina, el departamento de medios trabaja codo a codo con creativos, programadores y estrategas en cada proyecto.</p>
+													</div>
+													<div class="o-about__block o-jcarousel__item">
+														<h1 class="o-about__title">Street level communication</h1>
+														<p class="o-about__text">Creatividad inteligente, pero sobre todo popular. Es fundamental que además de ser brillantes, las campañas gusten y se comenten en la calle.</p>
+													</div>
+													<div class="o-about__block o-jcarousel__item">
+														<h1 class="o-about__title">361°</h1>
+														<p class="o-about__text">Más creativos y rompedores en cualquier territorio. Dedicándole la misma atención a un spot de tv, de radio, un banner o una pegatina. Lo más inesperado se puede convertir en la pieza más brillante y efectiva.</p>
+													</div>
 												</div>
 											</div>
+											<!-- end Carousel -->
+											<!-- Controls -->
+											<!-- Controls -->
+									    <a class="o-jcarousel__ctrl o-jcarousel__ctrl--prev" href="#">Prev</a>
+									    <a class="o-jcarousel__ctrl o-jcarousel__ctrl--next" href="#">Next</a>
+											<!-- end Controls -->
 										</div>
 									</div>
 								</div>
@@ -228,6 +256,7 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/handlebars/handlebars.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/jcarousel/dist/jquery.jcarousel.js"></script>
 
 
 	<!-- Handelbars Template -->

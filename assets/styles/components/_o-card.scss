@@ -1,0 +1,161 @@
+/*Card*/
+.o-card {
+  perspective: 1500px;
+  background-color: #fff;
+  &.js-flip {
+    > .o-card__flipper {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__flipper {
+    position: relative;
+    display: block;
+    transform-style: preserve-3d;
+    transition: all 0.6s ease-in-out;
+  }
+  &__face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    backface-visibility: hidden;
+    &--front {
+      z-index: 10;
+      background: #fff;
+      transform: rotateY(0);
+    }
+    &--back {
+      transform: rotateY(180deg);
+      background: white;
+      color: white;
+      .o-format__title {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+      }
+    }
+  }
+  &--case {
+    float: left;
+    height: 100%;
+    &-a {
+      position: relative;
+      z-index: 10;
+      width: calc(100% / 4 * 3);
+    }
+    &-b {
+      width: calc(100% / 4);
+
+      &.js-flip {
+        position: fixed;
+        top: 0;
+        right: 0;
+      }
+
+      .o-card__face--front {
+        > .o-brick {
+          $tocs: 4, 8, 12;
+          @include apply-brick-bg($tocs, false);
+        }
+      }
+    }
+  }
+  &--about {
+    &-a {
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/1-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+        &--back {
+          display: table;
+          padding: 1em;
+          text-align: center;
+        }
+      }
+    }
+    &-b {
+      @extend .u-fullsize;
+
+      .o-brick {
+        height: calc(100% / 3);
+      }
+
+      .o-card__face--front {
+        > .o-brick {
+          $tocs: 2, 3, 6, 7, "exception", 11;
+          @include apply-brick-bg($tocs, 5);
+        }
+      }
+    }
+  }
+  &--contact {
+    &-a {
+      cursor: pointer;
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/10-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+      }
+      .o-format__title {
+        display: block;
+      }
+    }
+  }
+  &--crew {
+    &-a {
+      .o-card__face {
+        &--front {
+          background: url('../images/tocs/6-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+      }
+    }
+    &-b {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 100;
+      width: 50%;
+      height: 100%;
+
+      .o-crew {
+        &__name,
+        &__photo {
+          height: 100%;
+        }
+      }
+
+      .o-card__face--front {
+        > .o-brick {
+          $tocs: 3, 4, 7, 8 , 11, 12;
+          @include apply-brick-bg($tocs, false);
+        }
+      }
+    }
+  }
+  &--imgday {
+    .o-card__face {
+      &--front {
+        background: url('../images/tocs/9-toc.png') center center no-repeat;
+        background-size: cover;
+      }
+      &--back {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+    }
+  }
+
+  &--audio {
+    .o-card__face {
+      &--front {
+        background: url('../images/tocs/5-toc.png') center center no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+}

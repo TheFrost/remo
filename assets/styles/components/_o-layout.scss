@@ -1,0 +1,46 @@
+/*Layout*/
+.o-layout {
+  &--desktop {
+    display: none;
+    @include media(">=tablet") {
+      display: block;
+    }
+  }
+  &--mobile {
+    transition: all 0.6s ease-in-out;
+    @include media(">=tablet") {
+      display: none;
+    }
+    &.js-translate-up {
+      transform: translate3d(0, calc((100% / 4) * -1), 0);
+      &.js-show-content {
+        .o-curtain {
+          top: calc(100% / 4 * 2);
+        }
+      }
+    }
+    &.js-translate-down {
+      transform: translate3d(0, calc(100% / 4), 0);
+      &.js-show-content {
+        .o-curtain {
+          bottom: calc(100% / 4 * 2);
+        }
+      }
+    }
+    &.js-show-content {
+      .o-curtain {
+        height: calc(100% / 4 * 3);
+      }
+    }
+
+    .o-card {
+      &__face--back {
+        display: table;
+        text-align: center;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

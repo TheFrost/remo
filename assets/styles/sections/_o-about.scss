@@ -1,0 +1,47 @@
+/*About*/
+.o-about {
+  &__desc {
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__block {
+    //width: 100%;
+    //width: 300px;
+    //max-width: 300px;
+    //margin: 0 auto 2em;
+  }
+  &__intro {
+    display: inline-block;
+    font-family: Chalet;
+    font-size: 1em;
+    color: $c_turquoise;
+  }
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-family: Chalet;
+    font-size: 1em;
+    color: $c_turquoise;
+  }
+  &__text {
+    margin: 0;
+    font-style: italic;
+    font-size: 1em;
+    color: $c_gray;
+  }
+}
+
+@include media(">1366px") {
+  .o-about {
+    &__block {
+      //max-width: 600px;
+    }
+    &__intro,
+    &__title {
+      font-size: 2em;
+    }
+    &__text {
+      font-size: 1.5em;
+    }
+  }
+}

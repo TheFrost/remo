@@ -1,0 +1,22 @@
+/*Contact*/
+.o-contact {
+  display: table;
+  text-align: center;
+  &__inner {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &__link {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+    color: $c_gray;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $c_turquoise;
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

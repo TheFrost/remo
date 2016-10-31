@@ -22,10 +22,37 @@
         body: $('body'),
         actionLinks: $('.o-case__actions-link'),
         imgDayContainer: $('#imgday-desktop'),
+        undegroundLinks: $('.js-underground-link'),
+        audioCard: $('.o-card--audio'),
+        audioCtrl: $('.o-audio__ctrl'),
+        audioIcon: $('.o-audio__icon'),
+        audioObj: $('.o-audio__object'),
+        aboutB: $('.o-card--about'),
+        aboutCarousel: $('#jcarousel-about'),
         currentType: null
       }
     },
     _bindEvents = function () {
+      _cache.aboutCarousel.on('jcarousel:reload jcarousel:create', function () {
+        var carousel = $(this),
+            width = carousel.innerWidth();
+
+        carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+      });
+
+      _cache.audioCtrl.on('click', function (evt) {
+        evt.preventDefault();
+
+        _toggleAudio();
+        _toggleAudioIcon();
+      });
+      _cache.audioObj.on('ended', function () {
+        console.log('ended');
+        _toggleAudioIcon();
+      });
+      _cache.undegroundLinks.on('click', function (evt) {
+        evt.stopPropagation();
+      });
       _cache.bricks.on('click', function (evt) {
         evt.preventDefault();
         var _that = $(this),
@@ -62,6 +89,41 @@
 
         _scrollTo(_cache.caseMediaContainer.find('.o-case__resources'), _hash);
       });
+    },
+    _initAboutCarousel = function () {
+      _cache.aboutCarousel.jcarousel({
+        list: '.o-jcarousel__container',
+        items: '.o-jcarousel__item',
+        animation: 'slow'
+      });
+      $('.o-jcarousel__ctrl--prev').jcarouselControl({
+          target: '-=1'
+      });
+
+      $('.o-jcarousel__ctrl--next').jcarouselControl({
+          target: '+=1'
+      });
+    },
+    _reloadABoutCarousel = function () {
+      _cache.aboutCarousel.trigger('jcarousel:reload');
+      setTimeout(function () {
+        _cache.aboutCarousel.animate({opacity: 1}, 'fast');
+      }, 200);
+    },
+    _toggleAudio = function () {
+      if (_cache.audioIcon.hasClass('fa-pause')) {
+        _cache.audioObj[0].pause();
+      } else {
+        _cache.audioObj[0].play();
+      }
+    },
+    _toggleAudioIcon = function () {
+      _cache.audioIcon.toggleClass('fa-pause');
+    },
+    _stopAudio = function () {
+      _cache.audioObj[0].pause();
+      _cache.audioObj[0].currentTime = 0;
+      _cache.audioIcon.removeClass('fa-pause');
     },
     _scrollTo = function (_container, _hash) {
       var _anchor = $(_hash),
@@ -126,12 +188,33 @@
       }, 800);
     },
     _flip = function (_type) {
+
+      /*If audio card stop audio and close flop*/
+      if (_type === 'audio') {
+        if (_cache.audioCard.hasClass('js-flip')) {
+          setTimeout(function () {
+            _stopAudio();
+          }, 900);
+        }
+      }
+
+      /*Create/reload carousel when open about card*/
+      if (_type === "about") {
+        if (!_cache.aboutB.hasClass('js-flip')) {
+          setTimeout(function () {
+            _reloadABoutCarousel();
+          }, 900);
+        }
+      }
+
+      /*Toggle flip logic*/
   		$('.o-card--' + _type + '-a').toggleClass('js-flip');
 
   		setTimeout(function () {
   			$('.o-card--' + _type + '-b').toggleClass('js-flip');
   		}, 200);
 
+      /*Crew ghost div show or hide*/
   		if (_type === "case" || _type === "about") {
   			if (_cache.crewB.hasClass('js-hide')) {
   				setTimeout(function () {
@@ -142,6 +225,7 @@
   			}
   		}
 
+      /*If case scroll to top*/
       if (_type === 'case') {
         Utils.resetScroll(_cache.root);
       }
@@ -153,6 +237,7 @@
       _bindEvents();
       _renderCrew();
       _renderImgDay();
+      _initAboutCarousel();
     };
 
     return {

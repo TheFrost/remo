@@ -1,0 +1,15 @@
+/*Format components*/
+.o-format {
+  &__title {
+    margin-top: 0;
+    color: $c_turquoise;
+  }
+  &__text {
+    margin-bottom: 1em;
+    color: $c_gray;
+  }
+  &__title,
+  &__text {
+    font-style: italic;
+  }
+}

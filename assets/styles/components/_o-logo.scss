@@ -1,0 +1,16 @@
+/*Logo*/
+.o-logo {
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 3em;
+  font-family: Chalet;
+  color: $c_turquoise;
+
+  @include media('>desktop') {
+    font-size: 5em;
+  }
+
+  @include media('>1366px') {
+    font-size: 8em;
+  }
+}
