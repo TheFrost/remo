@@ -73,26 +73,10 @@
 											<div class="o-brick o-brick--half"></div>
 											<div class="o-brick o-brick--half"></div>
 											<div class="o-brick o-brick--half"></div>
-											<!-- Contact Card -->
-											<div class="o-brick o-brick--half o-card o-card--contact o-card--contact-a" data-type="contact">
-												<div class="o-card__flipper u-fullsize">
-													<div class="o-card__face o-card__face--front u-fullsize"></div>
-													<div class="o-card__face o-card__face--back u-fullsize">
-														<div class="o-contact u-fullsize">
-															<div class="o-contact__inner u-fullsize">
-																<h1 class="o-format__title">Get in touch</h1>
-																<a href="tel:5552117428" class="o-contact__link js-underground-link">55 5211 7428</a>
-																<a href="mailto:hello@iloveremo.com" class="o-contact__link js-underground-link">hello@iloveremo.com</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="o-brick o-brick--half"></div>
 										</div>
 										<div class="o-card__face o-card__face--back u-fullsize">
 											<!-- Carousel -->
-											<div class="o-about__wrapper o-jcarousel" id="jcarousel-about">
+											<div class="o-about__carousel o-jcarousel" id="jcarousel-about">
 												<div class="o-about__desc o-jcarousel__container u-cf">
 													<div class="o-about__block o-jcarousel__item">
 														<p class="o-about__intro">remo es una agencia de publicidad a contracorriente y atípica que lleva desde 1993 siendo ininterrumpidamente libre, independiente y feliz. </p>
@@ -114,16 +98,31 @@
 														<p class="o-about__text">Más creativos y rompedores en cualquier territorio. Dedicándole la misma atención a un spot de tv, de radio, un banner o una pegatina. Lo más inesperado se puede convertir en la pieza más brillante y efectiva.</p>
 													</div>
 												</div>
+												<!-- Pagination -->
+										    <div class="o-jcarousel__pager">
+										        <!-- Pagination items will be generated in here -->
+										    </div>
 											</div>
 											<!-- end Carousel -->
-											<!-- Controls -->
-											<!-- Controls -->
-									    <a class="o-jcarousel__ctrl o-jcarousel__ctrl--prev" href="#">Prev</a>
-									    <a class="o-jcarousel__ctrl o-jcarousel__ctrl--next" href="#">Next</a>
-											<!-- end Controls -->
 										</div>
 									</div>
 								</div>
+								<!-- Contact Card -->
+								<div class="o-brick o-brick--half o-card o-card--contact o-card--contact-a" data-type="contact">
+									<div class="o-card__flipper u-fullsize">
+										<div class="o-card__face o-card__face--front u-fullsize"></div>
+										<div class="o-card__face o-card__face--back u-fullsize">
+											<div class="o-contact u-fullsize">
+												<div class="o-contact__inner u-fullsize">
+													<h1 class="o-format__title">Get in touch</h1>
+													<a href="tel:5552117428" class="o-contact__link js-underground-link">55 5211 7428</a>
+													<a href="mailto:hello@iloveremo.com" class="o-contact__link js-underground-link">hello@iloveremo.com</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="o-brick o-brick--half"></div>
 							</div>
 						</div>
 						<div class="o-card__face o-card__face--back u-fullsize"></div>
@@ -237,8 +236,10 @@
 				</div>
 				<div class="o-content o-content--contact">
 					<div class="o-contact u-fullsize">
-						<a href="tel:5552117428" class="o-contact__link">55 5211 7428</a>
-						<a href="mailto:hello@iloveremo.com" class="o-contact__link">hello@iloveremo.com</a>
+						<div class="o-contact__inner">
+							<a href="tel:5552117428" class="o-contact__link">55 5211 7428</a>
+							<a href="mailto:hello@iloveremo.com" class="o-contact__link">hello@iloveremo.com</a>
+						</div>
 					</div>
 				</div>
 				<div class="o-content o-content--crew" id="crew-container-mobile"></div>
@@ -253,7 +254,7 @@
 
 
 	<!-- Libs -->
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/handlebars/handlebars.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
 	<script src="bower_components/jcarousel/dist/jquery.jcarousel.js"></script>
@@ -398,7 +399,6 @@
 
 
 	<!-- Custom -->
-	<script src="scripts/vendor/path.js"></script>
 	<script src="scripts/module.utils.js"></script>
 	<script src="scripts/module.router.js"></script>
 	<script src="scripts/module.mobile.js"></script>

@@ -8,14 +8,16 @@
     "build-css": "node-sass --include-path scss assets/styles/main.scss styles/main.css",
     "postbuild-css": "npm run prefix-css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "serve": "browser-sync start --server '.' --files '.' --browser firefox & npm run watch-css"
+    "serve": "browser-sync start --server '.' --files '.' --browser firefox & npm run watch-css",
+    "vendor": "wiredep -s index.html --devDependencies"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "browser-sync": "^2.17.5",
     "node-sass": "^3.4.2",
     "nodemon": "^1.8.1",
-    "postcss-cli": "^2.6.0"
+    "postcss-cli": "^2.6.0",
+    "wiredep-cli": "~0.1.0"
   },
   "author": "",
   "license": "ISC"

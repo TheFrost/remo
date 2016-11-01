@@ -76,16 +76,17 @@
       }
     }
     &-b {
-      @extend .u-fullsize;
+      width: 100%;
+      height: calc(100% / 3 * 2);
 
       .o-brick {
-        height: calc(100% / 3);
+        height: calc(100% / 2);
       }
 
       .o-card__face--front {
         > .o-brick {
-          $tocs: 2, 3, 6, 7, "exception", 11;
-          @include apply-brick-bg($tocs, 5);
+          $tocs: 2, 3, 6, 7;
+          @include apply-brick-bg($tocs, false);
         }
       }
     }

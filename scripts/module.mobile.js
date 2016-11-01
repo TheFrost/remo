@@ -69,7 +69,6 @@
           _markup = '';
 
       _crew = Service.crew;
-      console.log(_crew);
       _markup = Utils.getMarkup(_source, _crew);
       _cache.crewContainer.html(_markup);
     },

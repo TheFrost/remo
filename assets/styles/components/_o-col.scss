@@ -9,6 +9,13 @@
     }
     &:nth-child(2) {
       width: calc(100% / 3 * 2);
+
+      > .o-brick {
+        &:nth-child(3) {
+          background: url('../images/tocs/11-toc.png') no-repeat center center;
+          background-size: cover;
+        }
+      }
     }
   }
 }

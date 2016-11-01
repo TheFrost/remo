@@ -1,17 +1,23 @@
 /*About*/
 .o-about {
+  &__carousel {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+  }
   &__desc {
     text-align: center;
     vertical-align: middle;
   }
   &__block {
-    //width: 100%;
-    //width: 300px;
-    //max-width: 300px;
-    //margin: 0 auto 2em;
+    margin-bottom: 1em;
   }
   &__intro {
     display: inline-block;
+    width: 100%;
+    max-width: 300px;
     font-family: Chalet;
     font-size: 1em;
     color: $c_turquoise;
@@ -24,17 +30,20 @@
     color: $c_turquoise;
   }
   &__text {
-    margin: 0;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
     font-style: italic;
     font-size: 1em;
     color: $c_gray;
   }
 }
 
-@include media(">1366px") {
+@include media(">=1366px") {
   .o-about {
-    &__block {
-      //max-width: 600px;
+    &__intro,
+    &__text {
+      max-width: 600px;
     }
     &__intro,
     &__title {
