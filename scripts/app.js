@@ -32,8 +32,6 @@
       } else {
         Desktop.init(_bricks);
       }
-
-      Router.init();
     }
 
     return {

@@ -352,26 +352,38 @@
 				{{#if media}}
 				<div class="o-case__resources-group" id="media-img">
 					{{#each media}}
-					<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
+					<div class="o-case__resources-item">
+						<figure class="o-case__resources-media">
+							<img src="{{this.url_media}}" class="u-imgresponsive" alt="">
+						</figure>
+					</div>
 					{{/each}}
 				</div>
 				{{/if}}
 
 				{{#if audio}}
 				<div class="o-case__resources-group" id="media-audio">
-					<audio controls>
-						{{#each audio}}
-						<source src="{{this.url_audio}}" type="{{this.mime_type}}">
-						{{/each}}
-					</audio>
+					<div class="o-case__resources-item">
+						<div class="o-case__resources-media">
+							<audio controls>
+								{{#each audio}}
+								<source src="{{this.url_audio}}" type="{{this.mime_type}}">
+								{{/each}}
+							</audio>
+						</div>
+					</div>
 				</div>
 				{{/if}}
 
 				{{#if video}}
 				<div class="o-case__resources-group" id="media-video">
 					{{#each video}}
-					<div class="o-case__video">
-						<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					<div class="o-case__resources-item">
+						<div class="o-case__resources-media">
+							<div class="o-case__video">
+								<iframe src="{{this.url_video}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+							</div>
+						</div>
 					</div>
 					{{/each}}
 				</div>
@@ -400,7 +412,6 @@
 
 	<!-- Custom -->
 	<script src="scripts/module.utils.js"></script>
-	<script src="scripts/module.router.js"></script>
 	<script src="scripts/module.mobile.js"></script>
 	<script src="scripts/module.desktop.js"></script>
 	<script src="scripts/module.service.js"></script>
