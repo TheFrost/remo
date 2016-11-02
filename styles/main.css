@@ -536,7 +536,8 @@ a {
   height: 100%;
   text-align: center;
   background-color: black;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
   .o-case__resources-group {
     max-width: 1024px;
     margin: 0 auto; }
