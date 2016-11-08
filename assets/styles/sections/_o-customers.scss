@@ -1,0 +1,26 @@
+/*Customers*/
+.o-customers {
+  &__inner {
+    display: table;
+    .o-format__title {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+  &__carousel {
+    width: 100%;
+  }
+  &__item {
+    display: table;
+    width: 480px;
+  }
+  &__fig {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    img {
+      max-height: 100%;
+    }
+  }
+}
