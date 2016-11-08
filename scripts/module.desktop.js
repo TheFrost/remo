@@ -15,8 +15,6 @@
         mediaTemplate: $('#case-template-media'),
         caseMediaContainer: $('.o-card--case-a > .o-card__flipper > .o-card__face--back'),
         caseInfoContainer: $('.o-card--case-b > .o-card__flipper > .o-card__face--back'),
-        crewTemplate: $('#crew-template'),
-        crewContainer: $('#crew-container-desktop'),
         allCards: $('.o-card'),
         root: $('html body'),
         body: $('body'),
@@ -29,6 +27,8 @@
         audioObj: $('.o-audio__object'),
         aboutB: $('.o-card--about'),
         aboutCarousel: $('#jcarousel-about'),
+        customersCarousel: $('#jcarousel-customers'),
+        customersB: $('.o-card--customers-b'),
         currentType: null
       }
     },
@@ -39,7 +39,23 @@
 
         carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
       });
+      _cache.customersCarousel.on('jcarousel:reload jcarousel:create', function () {
+        var carousel = $(this),
+            carouselWidth = carousel.innerWidth(),
+            carouselHeight = carousel.innerHeight(),
+            width = 0;
 
+        if (carouselWidth > 1200) {
+          width = carouselWidth / 4;
+        } else if (carouselWidth > 1000) {
+          width = carouselWidth / 3;
+        } else if (carouselWidth >= 768) {
+          width = carouselWidth / 2;
+        }
+
+        carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+        carousel.find('.o-customers__fig img').css('max-height', carouselHeight + 'px');
+      });
       _cache.audioCtrl.on('click', function (evt) {
         evt.preventDefault();
 
@@ -96,11 +112,11 @@
     },
     _initAboutCarousel = function () {
       _cache.aboutCarousel.jcarousel({
-        list: '.o-jcarousel__container',
-        items: '.o-jcarousel__item',
+        list: '.o-about__desc',
+        items: '.o-about__block',
         animation: 'slow'
       });
-      $('.o-jcarousel__pager').jcarouselPagination({
+      $('.o-about__pager').jcarouselPagination({
         item: function(page) {
           return '<a href="#' + page + '" class="o-jcarousel__pager-item"></a>';
         }
@@ -109,6 +125,27 @@
       $('.o-jcarousel__pager-item:first-child').trigger('click');
 
       _cache.aboutCarousel.animate({opacity:1}, 'slow');
+    },
+    _destroyAboutCarousel = function () {
+      _cache.aboutCarousel.jcarousel('destroy');
+    },
+    _initCustomersCarousel = function () {
+      _cache.customersCarousel.jcarousel({
+        list: '.o-customers__container',
+        items: '.o-customers__item',
+        animation: 'slow',
+        wrap: 'circular'
+      }).jcarouselAutoscroll({
+        interval: 3000,
+        target: '+=1',
+        autostart: true
+      });
+    },
+    _destroyCustomerCarousel = function () {
+      _cache.customersCarousel.jcarousel('destroy');
+    },
+    _reloadCustomerCarousel = function () {
+      _cache.customersCarousel.jcarousel('reload');
     },
     _toggleAudio = function () {
       if (_cache.audioIcon.hasClass('fa-pause')) {
@@ -168,15 +205,6 @@
       _cache.caseMediaContainer.html(_markupMedia);
       _cache.caseInfoContainer.html(_markupInfo);
     },
-    _renderCrew = function () {
-      var _source = _cache.crewTemplate.html(),
-          _crew = {},
-          _markup = '';
-
-      _crew = Service.crew;
-      _markup = Utils.getMarkup(_source, _crew);
-      _cache.crewContainer.html(_markup);
-    },
     _closeFlip = function (_type) {
       _flip(_type);
     },
@@ -188,6 +216,26 @@
       }, 800);
     },
     _flip = function (_type) {
+      var flipExist = $('js-flip').length;
+
+      /*Customers functionaliy*/
+      // if (_type === 'customers') {
+      //   if (_cache.customersB.hasClass('js-flip')) {
+      //     setTimeout(function () {
+      //       _cache.customersB.hide();
+      //       _cache.customersCarousel.fadeOut();
+      //     }, 900);
+      //   } else {
+      //     if (flipExist) {
+      //       setTimeout(function () {
+      //         _cache.customersCarousel.delay(1000).fadeIn();
+      //       }, 900);
+      //     } else {
+      //       _cache.customersB.show();
+      //       _cache.customersCarousel.delay(1000).fadeIn();
+      //     }
+      //   }
+      // }
 
       /*If audio card stop audio and close flop*/
       if (_type === 'audio') {
@@ -207,6 +255,29 @@
         }
       }
 
+      /*Create/reload carousel when open customers card*/
+      if (_type === "customers") {
+        if (!_cache.customersB.hasClass('js-flip')) {
+          if (flipExist) {
+            setTimeout(function () {
+              _cache.customersB.show();
+              _initCustomersCarousel();
+              _cache.customersCarousel.delay(1000).animate({opacity:1}, 'slow');
+            }, 900);
+          } else {
+            _cache.customersB.show();
+            _initCustomersCarousel();
+            _cache.customersCarousel.delay(1000).animate({opacity:1}, 'slow');
+          }
+        } else {
+          setTimeout(function () {
+            _cache.customersB.hide();
+            _destroyCustomerCarousel();
+            _cache.customersCarousel.animate({opacity:0}, 'slow');
+          }, 900);
+        }
+      }
+
       /*Toggle flip logic*/
   		$('.o-card--' + _type + '-a').toggleClass('js-flip');
 
@@ -214,28 +285,27 @@
   			$('.o-card--' + _type + '-b').toggleClass('js-flip');
   		}, 200);
 
-      /*Crew ghost div show or hide*/
-  		if (_type === "case" || _type === "about") {
-  			if (_cache.crewB.hasClass('js-hide')) {
-  				setTimeout(function () {
-  					_cache.crewB.toggleClass('js-hide');
-  				}, 900);
-  			} else {
-  				_cache.crewB.toggleClass('js-hide');
-  			}
-  		}
-
-      /*If case scroll to top*/
-      if (_type === 'case') {
-        Utils.resetScroll(_cache.root);
-      }
+      // /*Crew ghost div show or hide*/
+  		// if (_type === "case" || _type === "about") {
+  		// 	if (_cache.crewB.hasClass('js-hide')) {
+  		// 		setTimeout(function () {
+  		// 			_cache.crewB.toggleClass('js-hide');
+  		// 		}, 900);
+  		// 	} else {
+  		// 		_cache.crewB.toggleClass('js-hide');
+  		// 	}
+  		// }
+      //
+      // /*If case scroll to top*/
+      // if (_type === 'case') {
+      //   Utils.resetScroll(_cache.root);
+      // }
   	},
 
     /*Public*/
     init = function (_bricks) {
       _cache = _getSelectors(_bricks);
       _bindEvents();
-      _renderCrew();
       _renderImgDay();
     };
 

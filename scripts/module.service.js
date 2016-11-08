@@ -55,15 +55,6 @@
           };
         });
 
-        _self.crew = {
-          team: _crewData[0][0].acf.team.map(function (item, index) {
-            return {
-              name: item.name,
-              url: item.url
-            }
-          })
-        }
-
         _self.dayImg = _dayImgData[0].map(function (item, index) {
           return {
             name: item.acf.image_of_the_day.name,

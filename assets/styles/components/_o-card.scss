@@ -5,6 +5,9 @@
   &.js-flip {
     > .o-card__flipper {
       transform: rotateY(180deg);
+      &--vertical {
+        transform: rotateX(180deg);
+      }
     }
   }
 
@@ -13,6 +16,17 @@
     display: block;
     transform-style: preserve-3d;
     transition: all 0.6s ease-in-out;
+
+    &--vertical {
+      .o-card__face {
+        &--front {
+          transform: rotateX(0);
+        }
+        &--back {
+          transform: rotateX(180deg);
+        }
+      }
+    }
   }
   &__face {
     position: absolute;
@@ -55,8 +69,8 @@
 
       .o-card__face--front {
         > .o-brick {
-          $tocs: 4, 8, 12;
-          @include apply-brick-bg($tocs, false);
+          $tocs: 4, 8, "exception";
+          @include apply-brick-bg($tocs, 3);
         }
       }
     }
@@ -105,33 +119,30 @@
       }
     }
   }
-  &--crew {
+  &--customers {
     &-a {
       .o-card__face {
         &--front {
-          background: url('../images/tocs/6-toc.png') no-repeat center center;
+          background: url('../images/tocs/12-toc.png') no-repeat center center;
           background-size: cover;
         }
       }
     }
     &-b {
       position: absolute;
-      top: 0;
+      top: calc(100% / 3);
       right: 0;
       z-index: 100;
-      width: 50%;
-      height: 100%;
-
-      .o-crew {
-        &__name,
-        &__photo {
-          height: 100%;
-        }
-      }
+      width: 100%;
+      height: calc(100% / 3);
+      display: none;
 
       .o-card__face--front {
         > .o-brick {
-          $tocs: 3, 4, 7, 8 , 11, 12;
+          width: calc(100% / 4);
+          height: 100%;
+
+          $tocs: 5, 6, 7, 8;
           @include apply-brick-bg($tocs, false);
         }
       }

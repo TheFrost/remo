@@ -165,6 +165,9 @@ a {
   .o-card.js-flip > .o-card__flipper {
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg); }
+    .o-card.js-flip > .o-card__flipper--vertical {
+      -webkit-transform: rotateX(180deg);
+              transform: rotateX(180deg); }
   .o-card__flipper {
     position: relative;
     display: block;
@@ -172,6 +175,12 @@ a {
             transform-style: preserve-3d;
     -webkit-transition: all 0.6s ease-in-out;
     transition: all 0.6s ease-in-out; }
+    .o-card__flipper--vertical .o-card__face--front {
+      -webkit-transform: rotateX(0);
+              transform: rotateX(0); }
+    .o-card__flipper--vertical .o-card__face--back {
+      -webkit-transform: rotateX(180deg);
+              transform: rotateX(180deg); }
   .o-card__face {
     position: absolute;
     top: 0;
@@ -212,9 +221,6 @@ a {
       .o-card--case-b .o-card__face--front > .o-brick:nth-child(2) {
         background: url("../images/tocs/8-toc.png") no-repeat center center;
         background-size: cover; }
-      .o-card--case-b .o-card__face--front > .o-brick:nth-child(3) {
-        background: url("../images/tocs/12-toc.png") no-repeat center center;
-        background-size: cover; }
   .o-card--about-a .o-card__face--front {
     background: url("../images/tocs/1-toc.png") no-repeat center center;
     background-size: cover; }
@@ -246,36 +252,32 @@ a {
       background-size: cover; }
     .o-card--contact-a .o-format__title {
       display: block; }
-  .o-card--crew-a .o-card__face--front {
-    background: url("../images/tocs/6-toc.png") no-repeat center center;
+  .o-card--customers-a .o-card__face--front {
+    background: url("../images/tocs/12-toc.png") no-repeat center center;
     background-size: cover; }
-  .o-card--crew-b {
+  .o-card--customers-b {
     position: absolute;
-    top: 0;
+    top: calc(100% / 3);
     right: 0;
     z-index: 100;
-    width: 50%;
-    height: 100%; }
-    .o-card--crew-b .o-crew__name, .o-card--crew-b .o-crew__photo {
+    width: 100%;
+    height: calc(100% / 3);
+    display: none; }
+    .o-card--customers-b .o-card__face--front > .o-brick {
+      width: calc(100% / 4);
       height: 100%; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(1) {
-      background: url("../images/tocs/3-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(2) {
-      background: url("../images/tocs/4-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(3) {
-      background: url("../images/tocs/7-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(4) {
-      background: url("../images/tocs/8-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(5) {
-      background: url("../images/tocs/11-toc.png") no-repeat center center;
-      background-size: cover; }
-    .o-card--crew-b .o-card__face--front > .o-brick:nth-child(6) {
-      background: url("../images/tocs/12-toc.png") no-repeat center center;
-      background-size: cover; }
+      .o-card--customers-b .o-card__face--front > .o-brick:nth-child(1) {
+        background: url("../images/tocs/5-toc.png") no-repeat center center;
+        background-size: cover; }
+      .o-card--customers-b .o-card__face--front > .o-brick:nth-child(2) {
+        background: url("../images/tocs/6-toc.png") no-repeat center center;
+        background-size: cover; }
+      .o-card--customers-b .o-card__face--front > .o-brick:nth-child(3) {
+        background: url("../images/tocs/7-toc.png") no-repeat center center;
+        background-size: cover; }
+      .o-card--customers-b .o-card__face--front > .o-brick:nth-child(4) {
+        background: url("../images/tocs/8-toc.png") no-repeat center center;
+        background-size: cover; }
   .o-card--imgday .o-card__face--front {
     background: url("../images/tocs/9-toc.png") center center no-repeat;
     background-size: cover; }
@@ -657,3 +659,25 @@ a {
       color: #8dd2cd; }
     .o-contact__link:last-child {
       margin: 0; }
+
+/*Customers*/
+.o-customers__inner {
+  display: table; }
+  .o-customers__inner .o-format__title {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; }
+
+.o-customers__carousel {
+  width: 100%; }
+
+.o-customers__item {
+  display: table;
+  width: 480px; }
+
+.o-customers__fig {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center; }
+  .o-customers__fig img {
+    max-height: 100%; }
