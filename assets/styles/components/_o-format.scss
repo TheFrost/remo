@@ -3,13 +3,21 @@
   &__title {
     margin-top: 0;
     color: $c_turquoise;
+    font-size: 24px;
   }
   &__text {
     margin-bottom: 1em;
     color: $c_gray;
   }
-  &__title,
-  &__text {
-    font-style: italic;
+}
+
+@include media(">1366px") {
+  .o-format {
+    &__title {
+      font-size: 48px;
+    }
+    &__text {
+      font-size: 1.5em;
+    }
   }
 }

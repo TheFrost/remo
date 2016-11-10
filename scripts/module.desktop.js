@@ -111,11 +111,12 @@
       });
     },
     _initAboutCarousel = function () {
-      _cache.aboutCarousel.jcarousel({
+      var carousel = _cache.aboutCarousel.jcarousel({
         list: '.o-about__desc',
         items: '.o-about__block',
         animation: 'slow'
       });
+
       $('.o-about__pager').jcarouselPagination({
         item: function(page) {
           return '<a href="#' + page + '" class="o-jcarousel__pager-item"></a>';
@@ -130,12 +131,14 @@
       _cache.aboutCarousel.jcarousel('destroy');
     },
     _initCustomersCarousel = function () {
-      _cache.customersCarousel.jcarousel({
+      var carousel = _cache.customersCarousel.jcarousel({
         list: '.o-customers__container',
         items: '.o-customers__item',
         animation: 'slow',
         wrap: 'circular'
-      }).jcarouselAutoscroll({
+      });
+
+      carousel.jcarouselAutoscroll({
         interval: 3000,
         target: '+=1',
         autostart: true

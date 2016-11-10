@@ -8,4 +8,5 @@
   transition: height 0.6s ease-in-out;
   background-color: #000;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
